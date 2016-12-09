@@ -77,7 +77,7 @@
 		C4E66BE41DF5A40800152AB8 = {
 			isa = PBXGroup;
 			children = (
-				C4E66BEF1DF5A40800152AB8 /* Taschenanwalt UI Prototyp */,
+				C4E66BEF1DF5A40800152AB8 /* Taschenanwalt_UI_Prototyp */,
 				C4E66C041DF5A40900152AB8 /* Taschenanwalt UI PrototypTests */,
 				C4E66C0F1DF5A40900152AB8 /* Taschenanwalt UI PrototypUITests */,
 				C4E66BEE1DF5A40800152AB8 /* Products */,
@@ -94,7 +94,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C4E66BEF1DF5A40800152AB8 /* Taschenanwalt UI Prototyp */ = {
+		C4E66BEF1DF5A40800152AB8 /* Taschenanwalt_UI_Prototyp */ = {
 			isa = PBXGroup;
 			children = (
 				C4E66BF01DF5A40800152AB8 /* AppDelegate.swift */,
@@ -104,6 +104,7 @@
 				C4E66BF91DF5A40900152AB8 /* LaunchScreen.storyboard */,
 				C4E66BFC1DF5A40900152AB8 /* Info.plist */,
 			);
+			name = Taschenanwalt_UI_Prototyp;
 			path = "Taschenanwalt UI Prototyp";
 			sourceTree = "<group>";
 		};
@@ -505,6 +506,7 @@
 				C4E66C171DF5A40900152AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E66C181DF5A40900152AB8 /* Build configuration list for PBXNativeTarget "Taschenanwalt UI PrototypTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +515,7 @@
 				C4E66C1A1DF5A40900152AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E66C1B1DF5A40900152AB8 /* Build configuration list for PBXNativeTarget "Taschenanwalt UI PrototypUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +524,7 @@
 				C4E66C1D1DF5A40900152AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
