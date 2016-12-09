@@ -11,6 +11,7 @@ import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
     
+<<<<<<< HEAD
     
     // dark blue (red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
     // light grey (red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
@@ -33,6 +34,16 @@ class ChatViewController: JSQMessagesViewController {
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
+=======
+
+    let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
+    let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
+    var messages = [JSQMessage]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+>>>>>>> 0fcab63bd6f3a91bd61b90eb114006fa2151508a
         // Do any additional setup after loading the view.
     }
 
@@ -42,6 +53,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
 
+<<<<<<< HEAD
     func reloadMessagesView() {
         self.collectionView?.reloadData()
     }
@@ -71,3 +83,16 @@ class ChatViewController: JSQMessagesViewController {
             self.senderDisplayName = "blub"
         }
     }
+=======
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+>>>>>>> 0fcab63bd6f3a91bd61b90eb114006fa2151508a
