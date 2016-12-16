@@ -17,6 +17,7 @@
 		C492D4601DF9AB310067418F /* TA_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D45F1DF9AB310067418F /* TA_UITests.swift */; };
 		C492D46B1DF9AB310067418F /* TA_UIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D46A1DF9AB310067418F /* TA_UIUITests.swift */; };
 		C492D4791DF9AB5D0067418F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C492D4781DF9AB5D0067418F /* Main.storyboard */; };
+		C4A994441E0044A500E09318 /* api_request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A994431E0044A500E09318 /* api_request.swift */; };
 		C4FF0C4B1DF9BCB20053ED8C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF0C4A1DF9BCB20053ED8C /* ChatViewController.swift */; };
 		C4FF0C521DF9D2BE0053ED8C /* Apple_logo_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = C4FF0C511DF9D2BE0053ED8C /* Apple_logo_orange.png */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		C492D46A1DF9AB310067418F /* TA_UIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA_UIUITests.swift; sourceTree = "<group>"; };
 		C492D46C1DF9AB310067418F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492D4781DF9AB5D0067418F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C4A994431E0044A500E09318 /* api_request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = api_request.swift; sourceTree = "<group>"; };
 		C4FF0C4A1DF9BCB20053ED8C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C4FF0C511DF9D2BE0053ED8C /* Apple_logo_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Apple_logo_orange.png; sourceTree = "<group>"; };
 		D21ADFDC12D0279ABD5AFD6D /* Pods-TA_UIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TA_UIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TA_UIUITests/Pods-TA_UIUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				C4FF0C4E1DF9D2A10053ED8C /* Supporting Files */,
 				C492D44A1DF9AB310067418F /* AppDelegate.swift */,
 				C4FF0C4A1DF9BCB20053ED8C /* ChatViewController.swift */,
+				C4A994431E0044A500E09318 /* api_request.swift */,
 				C492D44C1DF9AB310067418F /* ViewController.swift */,
 				C492D4781DF9AB5D0067418F /* Main.storyboard */,
 				C492D4511DF9AB310067418F /* Assets.xcassets */,
@@ -463,6 +466,7 @@
 			files = (
 				C4FF0C4B1DF9BCB20053ED8C /* ChatViewController.swift in Sources */,
 				C492D44D1DF9AB310067418F /* ViewController.swift in Sources */,
+				C4A994441E0044A500E09318 /* api_request.swift in Sources */,
 				C492D44B1DF9AB310067418F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
