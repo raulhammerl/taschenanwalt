@@ -118,9 +118,11 @@ class ChatViewController: JSQMessagesViewController {
             ]
         
         self.addMessage(withId: senderId, name: senderDisplayName, text: text)
-        
+        //Show typing indicator
+        self.showTypingIndicator = 	true
         //Get the response from the chat bot
         api.sendRequest(request: text) { (result) -> Void in
+                self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
                 self.reloadMessagesView()
                 //self.finishSendingMessage()
