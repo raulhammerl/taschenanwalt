@@ -9,7 +9,7 @@
 import UIKit
 import JSQMessagesViewController
 
-class ChatViewController: JSQMessagesViewController {
+class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     // dark blue (red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
@@ -111,11 +111,11 @@ class ChatViewController: JSQMessagesViewController {
     //send button handling
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        let messageItem = [
+        /*let messageItem = [
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
-            ]
+            ]*/
         
         self.addMessage(withId: senderId, name: senderDisplayName, text: text)
         //Show typing indicator
@@ -134,6 +134,32 @@ class ChatViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage()
+    }
+    
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            picker.allowsEditing = true;
+            self.present(picker, animated: true, completion: nil)
+            
+        }
+
+    }
+    
+    /* Ausgewähltes Foto in Chat anzeigen */
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        //ImageDisplay.image = image
+        let photoMsg = JSQPhotoMediaItem(image: image)
+        let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
+        self.messages.append(mediaMsg!)
+        self.finishSendingMessage(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     
