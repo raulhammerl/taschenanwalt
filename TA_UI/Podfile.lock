@@ -2,14 +2,17 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - JSQMessagesViewController
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 241b1510aad484f9dc839089fef4829c5674164a
+PODFILE CHECKSUM: 76af30b47afb275f81bc156d7b2b9f3205f7d0ae
 
 COCOAPODS: 1.1.1

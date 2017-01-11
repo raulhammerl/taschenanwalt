@@ -108,6 +108,16 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         }
     }
     
+    //send a message with media item
+    private func addMediaMessage(withId id: String, name: String, media: JSQMessageMediaData)
+    {
+        if let message = JSQMessage(senderId: id, displayName: name, media: media)
+        {
+            messages.append(message)
+        }
+        
+    }
+    
     //send button handling
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
@@ -127,7 +137,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 self.reloadMessagesView()
                 //self.finishSendingMessage()
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                self.finishReceivingMessage()
+                self.finishReceivingMessage(animated: true)
         }
         
         
@@ -155,8 +165,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         //ImageDisplay.image = image
         let photoMsg = JSQPhotoMediaItem(image: image)
-        let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
-        self.messages.append(mediaMsg!)
+        //let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
+        self.addMediaMessage(withId: senderId, name: senderDisplayName, media: photoMsg!)
         self.finishSendingMessage(animated: true)
         self.dismiss(animated: true, completion: nil)
         

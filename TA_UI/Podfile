@@ -6,6 +6,7 @@ target 'TA_UI' do
   use_frameworks!
 
   pod 'JSQMessagesViewController'
+  pod 'SwiftyJSON'
 
   target 'TA_UITests' do
     inherit! :search_paths
