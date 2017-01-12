@@ -8,8 +8,11 @@
 
 import UIKit
 
+   let jsonFile:FileSaveHelper = FileSaveHelper(fileName: "jsonFile", fileExtension: .JSON, subDirectory: "SavingFiles", directory: .documentDirectory);
+
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+   
     
      /* Buttons für Photo Library/Kamera öffnen/Speichern + ImageView zum Anzeigen des ausgewählten Bildes
      --> fehlt alles noch im Storyboard */
@@ -22,7 +25,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+               // Do any additional setup after loading the view, typically from a nib.
+        //Create the jsonFile object.
+        
+     
     }
     
     override func didReceiveMemoryWarning() {

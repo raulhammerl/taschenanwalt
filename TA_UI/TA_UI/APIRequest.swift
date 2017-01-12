@@ -42,18 +42,40 @@ class APIRequest
             } */
             //print("result here !")
             //result = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
+            
             if let returnedData = data
             {
                 print("Data has been returned.")
                 let json = JSON(data: returnedData)
                 print(json)
+                if let done = json["result"]["parameters"]["done-status"].string{
+                    if(done == "Done" ){
+                        //var items = [[String:AnyObject]]()
+                        
+                        //var allContent = [Faelle]();
+                        let fall = Faelle(vorname: json["result"]["parameters"]["name"].string!, wohnort: json["result"]["parameters"]["city"].string!);
+                        print(fall);
+                        /* let daten = try NSData(data);
+                         let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
+                         //items.append(jsonDictionary as! [String : AnyObject]);
+                         print(jsonDictionary);*/
+                        self.saveInJson(autounfall: fall);
+                        
+                        
+                        //if arrayResult = json["result"]["parameters"].array{
+                        //  print(arrayResult);
+                        //}
+                        //print(done);
+                    }
+                }
+
                 if let result = json["result"]["fulfillment"]["speech"].string {
                     //Now you got your value
                     print("We've got our value.")
                     print(result)
                     callback(result) //The result will be accessible via the variable resultResponse
                 }
-            }
+                           }
             
             //print(result)
             //print("Response here!")
@@ -64,5 +86,25 @@ class APIRequest
         }
         task.resume()
     }
-}
+    func saveInJson(autounfall: Faelle){
+    
+     let jsonDict = ["Vorname" : autounfall.vorname , "Wohnort" : autounfall.wohnort];
+                do {
+            try jsonFile.saveFile(dataForJson: jsonDict as AnyObject)
+        }
+        catch {
+            print(error)
+        }
+        
+        
+        //Print out whether the file exists.
+        print("JSON file exists: \(jsonFile.fileExists)")
+        
+        }
+
+    
+    //Try to save the file. If there are any errors, print them out.
+  
+    }
+
 
