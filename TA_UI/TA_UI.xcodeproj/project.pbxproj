@@ -11,6 +11,7 @@
 		2D9EA49165462DDE4F688761 /* Pods_TA_UIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28500B73722E839A40EEE977 /* Pods_TA_UIUITests.framework */; };
 		4C15D78D1E2678B400219753 /* FileSaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15D78C1E2678B400219753 /* FileSaveHelper.swift */; };
 		4C15D78F1E26AEC600219753 /* Faelle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15D78E1E26AEC600219753 /* Faelle.swift */; };
+		4C3769651E2A395200C0CF59 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3769641E2A395200C0CF59 /* JSONSerializer.swift */; };
 		5FA54BF5B778902A924CA70C /* Pods_TA_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFAA5767D18235599E1676 /* Pods_TA_UITests.framework */; };
 		C3026FE21E1E8550001884A0 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3026FE11E1E8550001884A0 /* APIRequest.swift */; };
 		C3FE260E1E1E875300BBC2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FE260D1E1E875300BBC2B2 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		28500B73722E839A40EEE977 /* Pods_TA_UIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TA_UIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C15D78C1E2678B400219753 /* FileSaveHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileSaveHelper.swift; path = TA_UI/FileSaveHelper.swift; sourceTree = "<group>"; };
 		4C15D78E1E26AEC600219753 /* Faelle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Faelle.swift; path = TA_UI/Faelle.swift; sourceTree = "<group>"; };
+		4C3769641E2A395200C0CF59 /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
 		58D20C0AA83DF2E1559F2AAA /* Pods-TA_UIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TA_UIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TA_UIUITests/Pods-TA_UIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6214A1A7220B2A908BFC542F /* Pods-TA_UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TA_UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TA_UITests/Pods-TA_UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		62FFAA5767D18235599E1676 /* Pods_TA_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TA_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 		C492D43E1DF9AB310067418F = {
 			isa = PBXGroup;
 			children = (
+				4C3769641E2A395200C0CF59 /* JSONSerializer.swift */,
 				4C15D78C1E2678B400219753 /* FileSaveHelper.swift */,
 				4C15D78E1E26AEC600219753 /* Faelle.swift */,
 				C492D4491DF9AB310067418F /* TA_UI */,
@@ -483,6 +486,7 @@
 			files = (
 				4C15D78F1E26AEC600219753 /* Faelle.swift in Sources */,
 				C4FF0C4B1DF9BCB20053ED8C /* ChatViewController.swift in Sources */,
+				4C3769651E2A395200C0CF59 /* JSONSerializer.swift in Sources */,
 				C492D44D1DF9AB310067418F /* ViewController.swift in Sources */,
 				4C15D78D1E2678B400219753 /* FileSaveHelper.swift in Sources */,
 				C3026FE21E1E8550001884A0 /* APIRequest.swift in Sources */,

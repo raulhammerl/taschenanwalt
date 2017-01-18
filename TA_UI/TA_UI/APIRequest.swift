@@ -12,14 +12,14 @@ import SwiftyJSON
 class APIRequest
 {
     //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
-    let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
-    
+    let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
+    //var idHelper = 0;
     func sendRequest(request: String, callback: @escaping (String) -> ())
     {
         let escapedRequest = request.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        let url = URL(string: urlEndpoint + escapedRequest!) //create a url out of the endpoint
+        let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
         print(request);
-        print("Url endpoint + request: " + urlEndpoint + escapedRequest!);
+        print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
         let urlRequest = URLRequest(url: url!) //make a request out of the URL
         let session = URLSession.shared
         //var result = ""
@@ -51,14 +51,15 @@ class APIRequest
                 if let done = json["result"]["parameters"]["done-status"].string{
                     if(done == "Done" ){
                         //var items = [[String:AnyObject]]()
-                        
                         //var allContent = [Faelle]();
-                        let fall = Faelle(vorname: json["result"]["parameters"]["name"].string!, wohnort: json["result"]["parameters"]["city"].string!);
+                        
+                        let fall = Faelle(vorname: json["result"]["parameters"]["name"].string!, wohnort: json["result"]["parameters"]["city"].string!, identi: idHelper);
                         print(fall);
                         /* let daten = try NSData(data);
                          let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
                          //items.append(jsonDictionary as! [String : AnyObject]);
                          print(jsonDictionary);*/
+                        
                         self.saveInJson(autounfall: fall);
                         
                         
@@ -88,9 +89,32 @@ class APIRequest
     }
     func saveInJson(autounfall: Faelle){
     
-     let jsonDict = ["Vorname" : autounfall.vorname , "Wohnort" : autounfall.wohnort];
-                do {
-            try jsonFile.saveFile(dataForJson: jsonDict as AnyObject)
+        //let savedData = ["Something": 1]
+        
+        /*let jsonObject: [String: AnyObject] = [
+            "type_id": 1 as AnyObject,
+            "model_id": 1 as AnyObject,
+            "transfer": [
+                "startDate": "10/04/2015 12:45",
+                "endDate": "10/04/2015 16:00"
+            ],
+            "custom": savedData
+        ]
+        
+        let valid = JSONSerialization.isValidJSONObject(jsonObject)*/
+       
+       
+        let x : Int = autounfall.identi;
+        let id = String(x);
+       
+        //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
+        let jsonDict = ["ID" : id, "Vorname" : autounfall.vorname , "Wohnort" : autounfall.wohnort];
+        do {
+           // let json = JSONSerializer.toJson(autounfall)
+            //let dict = try JSONSerializer.toDictionary(json)
+            //Assert
+            //let expected = "{\"fur\": true, \"weight\": 2.5, \"age\": 2, \"name\": \"An animal\", \"id\": 182371823}"
+            try jsonFile.saveFile(dataForJson: jsonDict as NSDictionary)
         }
         catch {
             print(error)
@@ -99,6 +123,12 @@ class APIRequest
         
         //Print out whether the file exists.
         print("JSON file exists: \(jsonFile.fileExists)")
+        do{
+        try idHelper = jsonFile.getId();
+        }
+        catch{
+        print(error);
+        }
         
         }
 
