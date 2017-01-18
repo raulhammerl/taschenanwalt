@@ -52,8 +52,11 @@ class APIRequest
                     if(done == "Done" ){
                         //var items = [[String:AnyObject]]()
                         //var allContent = [Faelle]();
+                        let datum = self.aktuellesDatum();
+                        let vorname = json["result"]["parameters"]["name"].string!
+                        let wohnort = json["result"]["parameters"]["city"].string!
                         
-                        let fall = Faelle(vorname: json["result"]["parameters"]["name"].string!, wohnort: json["result"]["parameters"]["city"].string!, identi: idHelper);
+                        let fall = Faelle(vorname: vorname , wohnort: wohnort, identi: idHelper, datum: datum);
                         print(fall);
                         /* let daten = try NSData(data);
                          let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
@@ -108,7 +111,7 @@ class APIRequest
         let id = String(x);
        
         //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
-        let jsonDict = ["ID" : id, "Vorname" : autounfall.vorname , "Wohnort" : autounfall.wohnort];
+        let jsonDict = ["ID" : id, "Vorname" : autounfall.vorname , "Wohnort" : autounfall.wohnort, "Datum" : autounfall.datum];
         do {
            // let json = JSONSerializer.toJson(autounfall)
             //let dict = try JSONSerializer.toDictionary(json)
@@ -131,10 +134,37 @@ class APIRequest
         }
         
         }
-
-    
-    //Try to save the file. If there are any errors, print them out.
+        //Try to save the file. If there are any errors, print them out.
   
+    func aktuellesDatum() -> String {
+        //NSDate*today = [NSDate date];
+       
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy hh:mm"
+        let result = formatter.string(from: date)
+
+
+
+
+      /*  var currentDate = NSDate()
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        var date = dateFormatter.date(from: currentDate);
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+   
+        NSString *currentTime = [dateFormatter stringFromDate:today];
+        print(@"Die Uhrzeit: %@",currentTime);
+    
+        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+        NSString *currentDate = [dateFormatter stringFromDate:today];*/
+        print(result)
+        return result;
+    
+    }
+    
     }
 
 
