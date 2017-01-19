@@ -9,6 +9,7 @@
 import UIKit
 
    let jsonFile:FileSaveHelper = FileSaveHelper(fileName: "jsonFile", fileExtension: .JSON, subDirectory: "SavingFiles", directory: .documentDirectory);
+    var idHelper = 0;
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
