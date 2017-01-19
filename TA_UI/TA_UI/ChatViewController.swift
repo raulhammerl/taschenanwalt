@@ -214,10 +214,15 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // Location im Chat anzeigen
     func sendLocation (location: CLLocation) {
-        let locationMsg = JSQLocationMediaItem(location: location)
-        self.addMediaMessage(withId: senderId, name: senderDisplayName, media: locationMsg!)
-        self.finishSendingMessage(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        //let locationMsg = JSQLocationMediaItem(location: location)
+        let locationMsg = JSQLocationMediaItem(location: nil)
+        locationMsg?.setLocation(location, withCompletionHandler: { 
+            self.addMediaMessage(withId: self.senderId, name: self.senderDisplayName, media: locationMsg!)
+            self.finishSendingMessage(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        
     }
     
     // Location in Adresse umwandeln
