@@ -278,6 +278,7 @@
 				TargetAttributes = {
 					C492D4461DF9AB310067418F = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 69293MP62Q;
 						ProvisioningStyle = Automatic;
 					};
 					C492D45A1DF9AB310067418F = {
@@ -635,6 +636,7 @@
 			baseConfigurationReference = B4A59E9A285E483081FFD181 /* Pods-TA_UI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 69293MP62Q;
 				INFOPLIST_FILE = TA_UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "raul.TA-UI";
@@ -648,6 +650,7 @@
 			baseConfigurationReference = 11C21387388906D22E54423B /* Pods-TA_UI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 69293MP62Q;
 				INFOPLIST_FILE = TA_UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "raul.TA-UI";
