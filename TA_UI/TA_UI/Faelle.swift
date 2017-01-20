@@ -6,23 +6,27 @@ import UIKit
 
 class Faelle{
     
-    var identi: Int;
-    
+    var identi = 0;
+    var usecase = "";
+    var verletzte = "";
+    var sachschaden = "";
+    var alkohol = "";
+    var ausland = "";
+    var autobahn = "";
     //Welcher Fall, zB Autounfall, Zugverspätung
     //var art: String;
-
     //Daten von
-    var vorname:String;
+    var name = "";
     /*var nachname: String;
     var strasse: String;
     var hausnummer: String;
     var plz: String;*/
-    var wohnort: String;
-   // var telefonnr: String;
-   // var kennzeichen: String;
+    var adresse = "";
+    var telefonnr = "";
+    var kennzeichen = "";
     
     
-    var datum: String;
+    var datum = "";
     //var Unfallort: String;
 
     /*var unfallHergang: String;
@@ -33,16 +37,7 @@ class Faelle{
     var alkohol: Bool;
     var ausland: Bool;*/
     
-    init(vorname:String, wohnort:String, identi: Int, datum: String){
-        self.vorname = vorname;
-        self.wohnort = wohnort;
-        self.identi = identi;
-        self.datum = datum;
-        
-        
-        // This is the call to the designated init.
-        // defaulting to the Document directory. You can set this up to be any directory you want, or you can create convenience inits for both directories, if you want.
-    }
+    
  
     
     
