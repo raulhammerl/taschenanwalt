@@ -46,7 +46,14 @@ class CasesTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+         do {
+            let jsonCount = try jsonFile.getJSONData();
+            return jsonCount.count
+         }
+         catch {
+            print(error)
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,8 +61,22 @@ class CasesTableViewController: UITableViewController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CasesTableViewCell", for: indexPath) as! CasesTableViewCell
 
-        cell.CasesHeadline?.text = "Autounfall"
-        cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
+        
+        do {
+            let json = try jsonFile.getJSONData();
+            for index in 0 ..< json.count{
+            
+                if let usecase = json[index]["Usecase"].string{
+                    print(usecase);
+                    let label = usecase + " " + json[index]["ID"].string!
+                    cell.CasesHeadline?.text = label
+                    cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
+                }
+            }
+        }
+        catch {
+            print(error)
+        }
         
         return cell
         
