@@ -85,8 +85,7 @@ class CasesDetailTableViewController: UITableViewController {
                 cell.HeaderDate?.text = "22.03.16"
                 cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
                
-                print(indexPath.row)
-                
+              
                 
                 
             
@@ -100,8 +99,7 @@ class CasesDetailTableViewController: UITableViewController {
                 cell.DescriptionHeadline?.text = "Beschreibung"
                 cell.DescriptionText?.text = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim"
                 
-                print("description")
-            
+               
         
             return cell
             
@@ -113,7 +111,7 @@ class CasesDetailTableViewController: UITableViewController {
             cell.PersonName?.text = "Max Mustermann"
             return cell
             
-        default: print("blah"); let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell", for: indexPath) as! CasesHeadlineTableViewCell; return cell; break
+        default: print("error"); let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell", for: indexPath) as! CasesHeadlineTableViewCell; return cell; break
         }
     }
     
