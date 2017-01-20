@@ -254,6 +254,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             let message_street = street! + " " + number!
             let message_city = postalCode! + " " + locality!
             let message = message_street + "\n" + message_city
+            fall.location = message;
             self.addMessage(withId: senderId, name: senderDisplayName, text: message)
         }
     }
