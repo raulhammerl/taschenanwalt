@@ -12,15 +12,24 @@ import SwiftyJSON
 class APIRequest
 {
     //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
-    let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
+    //let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
+    let baseUrl = "https://api.api.ai/v1/query?" //API.AI base url for api requests
+    let sessionId = 12345 //TODO: Generate a new session ID
+    let lang = "de" //German language
+    let clientKey = "4315190c91b6490f8868b3acda1542ad" //API.AI client authentication key
     //var idHelper = 0;
     func sendRequest(request: String, callback: @escaping (String) -> ())
     {
         let escapedRequest = request.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
+        //let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
+        let queryUrl = baseUrl+"query="+escapedRequest!
+        //let completeUrl = baseUrl + "query="+escapedRequest!+"&lang="+lang+"&sessionId="+sessionId
+        let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
+        let url = URL(string: completeUrl)
         print(request);
-        print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
-        let urlRequest = URLRequest(url: url!) //make a request out of the URL
+        //print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
+        var urlRequest = URLRequest(url: url!) //make a request out of the URL
+        urlRequest.setValue("Bearer "+clientKey, forHTTPHeaderField: "Authorization")//set HTTP auth header
         let session = URLSession.shared
         //var result = ""
         //perform data request
@@ -73,13 +82,19 @@ class APIRequest
                     }
                 }
 
-                if let result = json["result"]["fulfillment"]["speech"].string {
+                /* if let result = json["result"]["fulfillment"]["speech"].string {
                     //Now you got your value
                     print("We've got our value.")
                     print(result)
                     callback(result) //The result will be accessible via the variable resultResponse
+                } */
+                if let result = json["result"]["speech"].string {
+                    //Now you got your value
+                    print("The value from result.speech was retrieved and is: ")
+                    print(result)
+                    callback(result) //The result will be accessible via the variable resultResponse
                 }
-                           }
+            }
             
             //print(result)
             //print("Response here!")
