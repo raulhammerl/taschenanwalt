@@ -155,7 +155,7 @@ class FileSaveHelper {
         
         
         //AusgabeTest
-        let jsonData = try NSData(contentsOfFile: fullyQualifiedPath, options: NSData.ReadingOptions.mappedIfSafe)
+        /*let jsonData = try NSData(contentsOfFile: fullyQualifiedPath, options: NSData.ReadingOptions.mappedIfSafe)
         let jsonOwn = JSON(data: jsonData as Data);
         let id = jsonOwn[0]["ID"];
         
@@ -166,7 +166,7 @@ class FileSaveHelper {
             if let userName = jsonOwn[index]["Vorname"].string {
                 print(userName);
             }
-        }
+        }*/
 
         
                 //wieder auskommentieren
