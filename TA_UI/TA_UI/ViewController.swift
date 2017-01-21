@@ -92,8 +92,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      let compressedImage = UIImage(data: image!)
      UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
      
+        
+       
+   
      }
-     
+    
     
     
 }

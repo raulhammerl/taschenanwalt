@@ -35,8 +35,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DEMO SETUP
-        self.senderId = "123"
+        //SETUP
+        self.senderId = "123" //Sollte man vllt noch ändern
         self.senderDisplayName = "abc"
         self.setup()
         self.addWelcomeMessage()
@@ -173,6 +173,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
                     picker.allowsEditing = true;
                     self.present(picker, animated: true, completion: nil)
+                    
                 } else {
                     print("Photo Library is not available")
                 }
@@ -186,6 +187,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     self.sendLocation(location: self.location)
                     self.getAdress()
                     self.locationManager.stopUpdatingLocation() // Location Update stoppen, um Akku zu sparen
+                    
+                   
+                    
                 } else {
                     print ("Location Service is not available")
                 }
@@ -208,6 +212,17 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         //let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
         self.addMediaMessage(withId: senderId, name: senderDisplayName, media: photoMsg!)
         self.finishSendingMessage(animated: true)
+        
+        //Add message to let API know photo has been sent
+        self.api.sendRequest(request: "PHOTOADDED") { (result) -> Void in
+            self.showTypingIndicator = 	false
+            self.addMessage(withId: "321", name: "Chatbot", text: result)
+            self.reloadMessagesView()
+            //self.finishSendingMessage()
+            JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+            self.finishReceivingMessage(animated: true)
+        }
+        
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -221,6 +236,16 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.finishSendingMessage(animated: true)
             self.dismiss(animated: true, completion: nil)
         })
+        
+        //Add message to let API know location has been sent
+        self.api.sendRequest(request: "LOCATIONSEND") { (result) -> Void in
+            self.showTypingIndicator = 	false
+            self.addMessage(withId: "321", name: "Chatbot", text: result)
+            self.reloadMessagesView()
+            //self.finishSendingMessage()
+            JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+            self.finishReceivingMessage(animated: true)
+        }
         
         
     }
