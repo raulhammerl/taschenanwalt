@@ -2,6 +2,11 @@ import UIKit
 
 class DictionaryTableViewController: UITableViewController, UISearchResultsUpdating {
     
+    // Usecases anlegen
+    let autounfall = UsecaseStore(name: "Autounfall", content: "Bei einem Autounfall ...")
+    let zugverspaetung = UsecaseStore(name: "Zugverspätung", content: "Bei einer Zugverspätung ...")
+    let zugausfall = UsecaseStore(name: "Zugausfall", content: "Bei einem Zugausfall ...")
+    
     // Arrays für zu durchsuchende Elemente und gefundene Elemente anlegen
     var usecases = [UsecaseStore] ()
     var filteredUsecases = [UsecaseStore] ()
@@ -17,8 +22,8 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Daten in die Tabelle laden
-        loadSampleUsecases()
+        // Usecases in das Array der View laden
+        usecases += [autounfall, zugverspaetung, zugausfall]
         
         // Bei Eintippen in Suchleiste wird TableView quasi durch neue TableView ersetzt (für die der ResultsController zuständig ist)
         self.searchController = UISearchController(searchResultsController: self.resultsController)
@@ -79,7 +84,7 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Zur Detailansicht wechseln
         self.performSegue(withIdentifier: "ShowDetails", sender: indexPath)
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Daten an die Detailansicht übergeben
@@ -87,18 +92,15 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
         if segue.identifier == "ShowDetails" {
             if let destination = segue.destination as? DictionaryDetailsViewController {
                 let path = tableView.indexPathForSelectedRow
-                destination.content = self.usecases[(path?.row)!].content
-                
-                // Hier gibts noch Probleme mit der Übergabe der Daten nach Suche --> Marius fragen?
+                if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
+                    destination.content = autounfall.content
+                } else if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
+                        destination.content = zugverspaetung.content
+                } else {
+                    destination.content = zugausfall.content
+                }
+                // Hier gibts noch Probleme mit der Übergabe der Daten nach Suche! --> Marius fragen?
             }
         }
-     }
-    
-    // Inhalte laden
-    private func loadSampleUsecases() {
-        let autounfall = UsecaseStore(name: "Autounfall", content: "Bei einem Autounfall ...")
-        let zugverspaetung = UsecaseStore(name: "Zugverspätung", content: "Bei einer Zugverspätung ...")
-        let zugausfall = UsecaseStore(name: "Zugausfall", content: "Bei einem Zugausfall ...")
-        usecases += [autounfall, zugverspaetung, zugausfall]
     }
 }
