@@ -55,24 +55,35 @@ class CasesTableViewController: UITableViewController{
         }
         return 0
     }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: "CasesTableViewCell", for: indexPath) as! CasesTableViewCell
 
+       
         
         do {
             let json = try jsonFile.getJSONData();
-            for index in 0 ..< json.count{
+            let item = json[indexPath.row]
             
-                if let usecase = json[index]["Usecase"].string{
-                    print(usecase);
-                    let label = usecase + " " + json[index]["ID"].string!
-                    cell.CasesHeadline?.text = label
-                    cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
-                }
+            let usecase = item["Usecase"].string!
+            if(usecase == "autounfall"){
+                cell.CasesLogo.image = UIImage (named: "LogoAutounfall")
             }
+            if(usecase == "zugverspätung"){
+                cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
+
+            }
+            
+            let label = usecase + " " + item["ID"].string!
+            let datum = item["Datum"].string!
+            cell.CasesHeadline?.text = label
+            
+            
+            cell.CasesDescription?.text = datum
+    
         }
         catch {
             print(error)
@@ -81,6 +92,15 @@ class CasesTableViewController: UITableViewController{
         return cell
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fallDetail", let destination = segue.destination as? CasesDetailTableViewController, let listIndex = tableView.indexPathForSelectedRow?.row
+        {
+            destination.listId = listIndex;
+        }
+    }
+    
+
  
 
 }
