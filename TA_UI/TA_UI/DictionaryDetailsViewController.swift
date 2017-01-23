@@ -10,16 +10,17 @@ import UIKit
 
 class DictionaryDetailsViewController: UIViewController {
     
-    /*@IBOutlet weak var details: UILabel!
-     
-     var content: String!
-     
-     override func viewDidLoad() {
-     super.viewDidLoad()
-     
-     details.text = content
-     }
-     */
+    
+    @IBOutlet weak var details: UILabel!
+   
+    var content: String!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        details.text = content
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

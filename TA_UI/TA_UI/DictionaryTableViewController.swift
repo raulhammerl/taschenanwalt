@@ -79,11 +79,22 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Zur Detailansicht wechseln
         self.performSegue(withIdentifier: "ShowDetails", sender: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // Daten an die Detailansicht übergeben
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     ...
+    /*
+     // Daten an die Detailansicht übergeben
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetails" {
+            if let destination = segue.destination as? DictionaryDetailsViewController {
+                let path = tableView.indexPathForSelectedRow
+                if tableView == self.tableView {
+                    destination.content = self.usecases[(path?.row)!].content
+                } else {
+     
+                }
+            }
+        }
      }*/
     
     // Inhalte laden
