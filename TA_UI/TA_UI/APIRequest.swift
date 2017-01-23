@@ -164,7 +164,6 @@ class APIRequest
         let x : Int = autounfall.identi;
         let id = String(x);
    
-        
         //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
         let jsonDict = ["ID" : id, "Usecase" : autounfall.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : autounfall.datum, "Location" : autounfall.location];
         do {
