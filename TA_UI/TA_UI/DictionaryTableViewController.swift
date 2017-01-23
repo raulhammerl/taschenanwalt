@@ -82,20 +82,17 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    /*
-     // Daten an die Detailansicht übergeben
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // Daten an die Detailansicht übergeben
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetails" {
             if let destination = segue.destination as? DictionaryDetailsViewController {
                 let path = tableView.indexPathForSelectedRow
-                if tableView == self.tableView {
-                    destination.content = self.usecases[(path?.row)!].content
-                } else {
-     
-                }
+                destination.content = self.usecases[(path?.row)!].content
+                
+                // Hier gibts noch Probleme mit der Übergabe der Daten nach Suche --> Marius fragen?
             }
         }
-     }*/
+     }
     
     // Inhalte laden
     private func loadSampleUsecases() {
