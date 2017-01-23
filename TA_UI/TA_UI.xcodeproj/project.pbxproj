@@ -13,6 +13,8 @@
 		4C15D78F1E26AEC600219753 /* Faelle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15D78E1E26AEC600219753 /* Faelle.swift */; };
 		5FA54BF5B778902A924CA70C /* Pods_TA_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FFAA5767D18235599E1676 /* Pods_TA_UITests.framework */; };
 		849B1CC71E30B5F100930BCB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B1CC61E30B5F100930BCB /* CoreLocation.framework */; };
+		84E04FFA1E362FEB00050F5B /* UsecaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E04FF91E362FEB00050F5B /* UsecaseStore.swift */; };
+		84E04FFC1E36305100050F5B /* DictionaryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E04FFB1E36305100050F5B /* DictionaryDetailsViewController.swift */; };
 		C3026FE21E1E8550001884A0 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3026FE11E1E8550001884A0 /* APIRequest.swift */; };
 		C3FE260E1E1E875300BBC2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FE260D1E1E875300BBC2B2 /* Main.storyboard */; };
 		C40E7A6C1E27E06500E8142B /* CasesDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7A6A1E27E06500E8142B /* CasesDetailTableViewController.swift */; };
@@ -60,6 +62,8 @@
 		62FFAA5767D18235599E1676 /* Pods_TA_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TA_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6708E6A05A2011C567FFD9 /* Pods_TA_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TA_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		849B1CC61E30B5F100930BCB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		84E04FF91E362FEB00050F5B /* UsecaseStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsecaseStore.swift; sourceTree = "<group>"; };
+		84E04FFB1E36305100050F5B /* DictionaryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDetailsViewController.swift; sourceTree = "<group>"; };
 		B4A59E9A285E483081FFD181 /* Pods-TA_UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TA_UI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TA_UI/Pods-TA_UI.debug.xcconfig"; sourceTree = "<group>"; };
 		C3026FE11E1E8550001884A0 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		C3FE260D1E1E875300BBC2B2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 				C40E7A6A1E27E06500E8142B /* CasesDetailTableViewController.swift */,
 				C40E7A6B1E27E06500E8142B /* CasesTableViewController.swift */,
 				C40E7A6E1E27E07000E8142B /* DictionaryTableViewController.swift */,
+				84E04FF91E362FEB00050F5B /* UsecaseStore.swift */,
+				84E04FFB1E36305100050F5B /* DictionaryDetailsViewController.swift */,
 				C3026FE11E1E8550001884A0 /* APIRequest.swift */,
 				C492D44A1DF9AB310067418F /* AppDelegate.swift */,
 				C492D44C1DF9AB310067418F /* ViewController.swift */,
@@ -512,11 +518,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C15D78F1E26AEC600219753 /* Faelle.swift in Sources */,
+				84E04FFA1E362FEB00050F5B /* UsecaseStore.swift in Sources */,
 				C4FF0C4B1DF9BCB20053ED8C /* ChatViewController.swift in Sources */,
 				C492D44D1DF9AB310067418F /* ViewController.swift in Sources */,
 				4C15D78D1E2678B400219753 /* FileSaveHelper.swift in Sources */,
 				C3026FE21E1E8550001884A0 /* APIRequest.swift in Sources */,
 				C40E7A6C1E27E06500E8142B /* CasesDetailTableViewController.swift in Sources */,
+				84E04FFC1E36305100050F5B /* DictionaryDetailsViewController.swift in Sources */,
 				C492D44B1DF9AB310067418F /* AppDelegate.swift in Sources */,
 				C40E7A6F1E27E07000E8142B /* DictionaryTableViewController.swift in Sources */,
 				C40E7A6D1E27E06500E8142B /* CasesTableViewController.swift in Sources */,
