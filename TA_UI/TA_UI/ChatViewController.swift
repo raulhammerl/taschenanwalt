@@ -9,6 +9,7 @@
 import UIKit
 import JSQMessagesViewController
 import CoreLocation
+import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
@@ -127,7 +128,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // Funktion, die bei jeder Positionsänderung automatisch aufgerufen wird
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations[0]     // Erstes Element des Arrays enthält die zuletzt gespeicherte Location
+        location = locations[0]
+        // Erstes Element des Arrays enthält die zuletzt gespeicherte Location
         
     }
     
@@ -210,6 +212,23 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         //ImageDisplay.image = image
         let photoMsg = JSQPhotoMediaItem(image: image)
         //let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
+        //We have to use a do-try-catch because our saveFile method throws.
+        do {
+            // want to make sure the app doesn’t crash so I’m using a guard statement. In this instance, it’s a little overkill because I know the image exists, but if you were downloading one from the internet it is a good idea to use.
+            // Now we save our file using the try keyword and our saveFile(imageFile:) method.
+            var fallNummerImage = String(idHelper);
+            var anzahlImages = 1;
+            var imageFileName = fallNummerImage + String(anzahlImages);
+            let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                   try imageToSave.saveFileImage(image: image)
+                anzahlImages += 1
+
+        }
+            //If there is an error, we will print it to the console window.
+        catch {
+            print(error)
+        }
+        
         self.addMediaMessage(withId: senderId, name: senderDisplayName, media: photoMsg!)
         self.finishSendingMessage(animated: true)
         

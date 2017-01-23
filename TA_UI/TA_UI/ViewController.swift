@@ -9,8 +9,9 @@
 import UIKit
 
    let jsonFile:FileSaveHelper = FileSaveHelper(fileName: "jsonFile", fileExtension: .JSON, subDirectory: "SavingFiles", directory: .documentDirectory);
-let imageToSave:FileSaveHelper = FileSaveHelper(fileName: "", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+
     var idHelper = 0;
+
     let fall = Faelle();
 
 
@@ -19,7 +20,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
    
     
      /* Buttons für Photo Library/Kamera öffnen/Speichern + ImageView zum Anzeigen des ausgewählten Bildes
-     --> fehlt alles noch im Storyboard */
+n     --> fehlt alles noch im Storyboard */
      @IBOutlet weak var PhotoLibrary: UIButton!
      @IBOutlet weak var Camera: UIButton!
      @IBOutlet weak var Save: UIButton!

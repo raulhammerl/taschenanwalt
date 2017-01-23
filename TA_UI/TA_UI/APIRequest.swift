@@ -172,6 +172,7 @@ class APIRequest
             //Assert
             //let expected = "{\"fur\": true, \"weight\": 2.5, \"age\": 2, \"name\": \"An animal\", \"id\": 182371823}"
             try jsonFile.saveFile(dataForJson: jsonDict as NSDictionary)
+            
         }
         catch {
             print(error)

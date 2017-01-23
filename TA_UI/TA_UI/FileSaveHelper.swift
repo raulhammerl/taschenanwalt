@@ -51,7 +51,7 @@ class FileSaveHelper {
     private let directory:FileManager.SearchPathDirectory
     private let directoryPath: String
     private let fileManager = FileManager.default
-    private let fileName:String
+     var fileName:String
     private let filePath:String
     private let fullyQualifiedPath:String
     private let subDirectory:String
