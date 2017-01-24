@@ -84,22 +84,32 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Zur Detailansicht wechseln
         self.performSegue(withIdentifier: "ShowDetails", sender: indexPath)
-        //tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Daten an die Detailansicht übergeben
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetails" {
             if let destination = segue.destination as? DictionaryDetailsViewController {
-                let path = tableView.indexPathForSelectedRow
-                if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
-                    destination.content = autounfall.content
-                } else if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
+                var path = tableView.indexPathForSelectedRow
+                if path != nil {
+                    if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
+                        destination.content = autounfall.content
+                    } else if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
                         destination.content = zugverspaetung.content
+                    } else {
+                        destination.content = zugausfall.content
+                    }
                 } else {
-                    destination.content = zugausfall.content
+                    path = resultsController.tableView.indexPathForSelectedRow
+                    if (resultsController.tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
+                        destination.content = autounfall.content
+                    } else if (resultsController.tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
+                        destination.content = zugverspaetung.content
+                    } else {
+                        destination.content = zugausfall.content
+                    }
                 }
-                // Hier gibts noch Probleme mit der Übergabe der Daten nach Suche! --> Marius fragen?
             }
         }
     }
