@@ -97,6 +97,7 @@ class CasesTableViewController: UITableViewController{
         
     }
     
+    //Übergibt die Id, der geklickten Cell an CasesDetailTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fallDetail", let destination = segue.destination as? CasesDetailTableViewController, let listIndex = tableView.indexPathForSelectedRow?.row
         {

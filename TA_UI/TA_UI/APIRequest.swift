@@ -52,18 +52,16 @@ class APIRequest
             //print("result here !")
             //result = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
 
+            
+            //Json Datei, erzeugt von Chatbot, wird hier ausgelesen
             if let returnedData = data
             {
                 print("Data has been returned.")
                 let json = JSON(data: returnedData)
-                print(json)
-                //if let done = json["result"]["parameters"]["done-status"].string{
-                    //if(done == "Done" ){
-                        //var items = [[String:AnyObject]]()
-                        //var allContent = [Faelle]();
-                        let datum = self.aktuellesDatum();
-                        allgemein.datum = datum;
-                        allgemein.identi = idHelper;
+                let datum = self.aktuellesDatum();
+                allgemein.datum = datum;
+                allgemein.identi = idHelper;
+                
                 if let usecaseJson = json["result"]["parameters"]["usecase"].string{
                     allgemein.usecase = usecaseJson;
                 }
@@ -99,17 +97,9 @@ class APIRequest
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
                         if(done == "done" ){
-                            print(fall);
-                            print(fall.kennzeichen);
-                            print(fall.telefonnr);
-                            print(fall.adresse);
-                            print(fall.name);
-                            
                             self.saveInJsonAutounfall(autounfall: fall);
-                            
                         }
                     }
-
                 }
                 if(allgemein.usecase == "zugausfall"){
                     if let nameBahnJson = json["result"]["parameters"]["name"].string{
@@ -129,13 +119,9 @@ class APIRequest
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
                         if(done == "done" ){
-                        
-                            
                             self.saveInJsonZug(zugProblem: zug);
-                            
                         }
                     }
-                    
                 }
                 if(allgemein.usecase == "zugverspätung"){
                     if let nameBahnJson = json["result"]["parameters"]["name"].string{
@@ -155,35 +141,13 @@ class APIRequest
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
                         if(done == "done" ){
-                            
-                            
                             self.saveInJsonZug(zugProblem: zug);
-                            
                         }
                     }
                     
                 }
-                
-                        //let fall = Faelle(vorname: vorname , wohnort: wohnort, identi: idHelper, datum: datum);
-                        /* let daten = try NSData(data);
-                         let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
-                         //items.append(jsonDictionary as! [String : AnyObject]);
-                         print(jsonDictionary);*/
-                
-                
-                        //if arrayResult = json["result"]["parameters"].array{
-                        //  print(arrayResult);
-                        //}
-                        //print(done);
-                   // }
-              //  }
 
-                /* if let result = json["result"]["fulfillment"]["speech"].string {
-                    //Now you got your value
-                    print("We've got our value.")
-                    print(result)
-                    callback(result) //The result will be accessible via the variable resultResponse
-                } */
+              
                 if let result = json["result"]["speech"].string {
                     //Now you got your value
                     print("The value from result.speech was retrieved and is: ")
@@ -192,44 +156,21 @@ class APIRequest
                 }
             }
             
-            //print(result)
-            //print("Response here!")
-            //print(r)
-            //print("Error here!")
-            //print(e)
-            
         }
         task.resume()
     }
-    func saveInJsonAutounfall(autounfall: Faelle){
     
-        //let savedData = ["Something": 1]
+    func saveInJsonAutounfall(autounfall: Faelle){
         
-        /*let jsonObject: [String: AnyObject] = [
-            "type_id": 1 as AnyObject,
-            "model_id": 1 as AnyObject,
-            "transfer": [
-                "startDate": "10/04/2015 12:45",
-                "endDate": "10/04/2015 16:00"
-            ],
-            "custom": savedData
-        ]
-        
-        let valid = JSONSerialization.isValidJSONObject(jsonObject)*/
-       
-       
         let x : Int = allgemein.identi;
         let id = String(x);
    
-        //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
+        //Dictionary für json Datei
         let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : autounfall.location];
+        
+        //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {
-           // let json = JSONSerializer.toJson(autounfall)
-            //let dict = try JSONSerializer.toDictionary(json)
-            //Assert
-            //let expected = "{\"fur\": true, \"weight\": 2.5, \"age\": 2, \"name\": \"An animal\", \"id\": 182371823}"
             try jsonFile.saveFile(dataForJson: jsonDict as NSDictionary)
-            
         }
         catch {
             print(error)
@@ -238,53 +179,7 @@ class APIRequest
         
         //Print out whether the file exists.
         print("JSON file exists: \(jsonFile.fileExists)")
-        do{
-        try idHelper = jsonFile.getId();
-        }
-        catch{
-        print(error);
-        }
         
-        }
-        //Try to save the file. If there are any errors, print them out.
-    
-    func saveInJsonZug(zugProblem: zugFall){
-        
-        //let savedData = ["Something": 1]
-        
-        /*let jsonObject: [String: AnyObject] = [
-         "type_id": 1 as AnyObject,
-         "model_id": 1 as AnyObject,
-         "transfer": [
-         "startDate": "10/04/2015 12:45",
-         "endDate": "10/04/2015 16:00"
-         ],
-         "custom": savedData
-         ]
-         
-         let valid = JSONSerialization.isValidJSONObject(jsonObject)*/
-        
-        
-        let x : Int = allgemein.identi;
-        let id = String(x);
-        
-        //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
-        let jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
-        do {
-            // let json = JSONSerializer.toJson(autounfall)
-            //let dict = try JSONSerializer.toDictionary(json)
-            //Assert
-            //let expected = "{\"fur\": true, \"weight\": 2.5, \"age\": 2, \"name\": \"An animal\", \"id\": 182371823}"
-            try jsonFile.saveFile(dataForJson: jsonDictZug as NSDictionary)
-            
-        }
-        catch {
-            print(error)
-        }
-        
-        
-        //Print out whether the file exists.
-        print("JSON file exists: \(jsonFile.fileExists)")
         do{
             try idHelper = jsonFile.getId();
         }
@@ -293,38 +188,46 @@ class APIRequest
         }
         
     }
-
     
-  
+    
+    //speichert Zugfall in json File
+    func saveInJsonZug(zugProblem: zugFall){
+   
+        let x : Int = allgemein.identi;
+        let id = String(x);
+        
+       //Dictionary für json Datei
+        let jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
+        
+        //Dictionary speichern, mit saveFile Function aus FileSaveHelper
+        do {
+            try jsonFile.saveFile(dataForJson: jsonDictZug as NSDictionary)
+        }
+        catch {
+            print(error)
+        }
+        
+        
+        //Zeigt ob File exisitiert
+        print("JSON file exists: \(jsonFile.fileExists)")
+        
+        do{
+            try idHelper = jsonFile.getId();
+        }
+        catch{
+            print(error);
+        }        
+    }
+
+  //aktuelles Datum + Uhrzeit
     func aktuellesDatum() -> String {
-        //NSDate*today = [NSDate date];
-       
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy hh:mm"
         let result = formatter.string(from: date)
-
-
-
-
-      /*  var currentDate = NSDate()
-        var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YYYY"
-        var date = dateFormatter.date(from: currentDate);
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm:ss"];
-   
-        NSString *currentTime = [dateFormatter stringFromDate:today];
-        print(@"Die Uhrzeit: %@",currentTime);
-    
-        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        NSString *currentDate = [dateFormatter stringFromDate:today];*/
-        print(result)
         return result;
-    
     }
     
-    }
+}
 
 
