@@ -51,7 +51,7 @@ class FileSaveHelper {
     private let directory:FileManager.SearchPathDirectory
     private let directoryPath: String
     private let fileManager = FileManager.default
-    private let fileName:String
+     var fileName:String
     private let filePath:String
     private let fullyQualifiedPath:String
     private let subDirectory:String
@@ -310,19 +310,20 @@ class FileSaveHelper {
     }
     
 //Wird nicht benutzt, da in der json Datei ein Array gespeichert wird --> wird mit swifty Json ausgelesen
-    func getJSONData() throws -> NSDictionary {
+    func getJSONData() throws -> JSON {
         // 2
         guard fileExists else {
             throw FileErrors.FileNotFound
         }
         
         do {
-            // 3
+           
             let data = try NSData(contentsOfFile: fullyQualifiedPath, options: NSData.ReadingOptions.mappedIfSafe)
-            // 4
-            let jsonDictionary = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! NSDictionary
+            let jsonData = JSON(data: data as Data);
+
+            //let jsonDictionary = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! NSDictionary
             //items.append(jsonDictionary as! [String : AnyObject]);
-            return jsonDictionary
+            return jsonData
         } catch {
             throw FileErrors.FileNotRead
         }

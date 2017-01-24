@@ -9,6 +9,7 @@
 import UIKit
 import JSQMessagesViewController
 import CoreLocation
+import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
@@ -26,6 +27,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     var locationManager : CLLocationManager!
     var location : CLLocation!
+    var address : String!
     
     override func viewWillAppear(_ animated: Bool) {
        self.collectionView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
@@ -127,8 +129,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // Funktion, die bei jeder Positionsänderung automatisch aufgerufen wird
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations[0]     // Erstes Element des Arrays enthält die zuletzt gespeicherte Location
-        
+        location = locations[0] // Erstes Element des Arrays enthält die zuletzt gespeicherte Location
+        self.getAdress()
     }
     
     //send button handling
@@ -173,7 +175,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
                     picker.allowsEditing = true;
                     self.present(picker, animated: true, completion: nil)
-                    
                 } else {
                     print("Photo Library is not available")
                 }
@@ -185,11 +186,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             action in
                 if self.location != nil {
                     self.sendLocation(location: self.location)
-                    self.getAdress()
+                    self.sendAddress()
                     self.locationManager.stopUpdatingLocation() // Location Update stoppen, um Akku zu sparen
-                    
-                   
-                    
                 } else {
                     print ("Location Service is not available")
                 }
@@ -210,6 +208,23 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         //ImageDisplay.image = image
         let photoMsg = JSQPhotoMediaItem(image: image)
         //let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
+        //We have to use a do-try-catch because our saveFile method throws.
+        do {
+            // want to make sure the app doesn’t crash so I’m using a guard statement. In this instance, it’s a little overkill because I know the image exists, but if you were downloading one from the internet it is a good idea to use.
+            // Now we save our file using the try keyword and our saveFile(imageFile:) method.
+            var fallNummerImage = String(idHelper);
+            var anzahlImages = 1;
+            var imageFileName = fallNummerImage + String(anzahlImages);
+            let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                   try imageToSave.saveFileImage(image: image)
+                anzahlImages += 1
+
+        }
+            //If there is an error, we will print it to the console window.
+        catch {
+            print(error)
+        }
+        
         self.addMediaMessage(withId: senderId, name: senderDisplayName, media: photoMsg!)
         self.finishSendingMessage(animated: true)
         
@@ -229,7 +244,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // Location im Chat anzeigen
     func sendLocation (location: CLLocation) {
-        //let locationMsg = JSQLocationMediaItem(location: location)
         let locationMsg = JSQLocationMediaItem(location: nil)
         locationMsg?.setLocation(location, withCompletionHandler: { 
             self.addMediaMessage(withId: self.senderId, name: self.senderDisplayName, media: locationMsg!)
@@ -259,7 +273,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             }
             if (placemarks?.count)! > 0 {
                 let pm = (placemarks?[0])! as CLPlacemark
-                self.sendAddress(placemark: pm)
+                let street = (pm.thoroughfare != nil) ? pm.thoroughfare : ""
+                let number = (pm.subThoroughfare != nil) ? pm.subThoroughfare : ""
+                let postalCode = (pm.postalCode != nil) ? pm.postalCode : ""
+                let locality = (pm.locality != nil) ? pm.locality : ""
+                self.address = street! + " " + number! + "\n" + postalCode! + " " + locality!
+                fall.location = self.address;   // Für Speichern in json-Datei
             } else {
                 print("No data received from Geocoder")
             }
@@ -267,24 +286,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     // Adresse im Chat anzeigen
-    func sendAddress(placemark: CLPlacemark?) {
-        if let containsPlacemark = placemark {
-            // Variablen bei Erfüllung der Bedingung den jeweiligen Wert oder sonst einen leeren String zuordnen
-            let street = (containsPlacemark.thoroughfare != nil) ? containsPlacemark.thoroughfare : ""
-            let number = (containsPlacemark.subThoroughfare != nil) ? containsPlacemark.subThoroughfare : ""
-            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-            
-            // Aufgeteilt auf 2 Variablen, da sonst Fehlermeldung wegen Komplexität
-            let message_street = street! + " " + number!
-            let message_city = postalCode! + " " + locality!
-            let message = message_street + "\n" + message_city
-            fall.location = message;
-            self.addMessage(withId: senderId, name: senderDisplayName, text: message)
-        }
+    func sendAddress() {
+        self.addMessage(withId: senderId, name: senderDisplayName, text: self.address)
     }
     
 }
+
     //MARK - Setup
     extension ChatViewController {
         func addWelcomeMessage() {

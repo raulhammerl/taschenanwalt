@@ -27,6 +27,10 @@ class CasesDetailPersonCell: UITableViewCell {
     @IBOutlet weak var PersonHeadline: UILabel!
 
     @IBOutlet weak var PersonName: UILabel!
+    @IBOutlet weak var PersonAdresse: UILabel!
+    @IBOutlet weak var PersonTelefon: UILabel!
+
+    @IBOutlet var Kennzeichen: UILabel!
 
 }
 
@@ -39,6 +43,9 @@ class CasesDetailTrainCell: UITableViewCell {
 
 
 class CasesDetailTableViewController: UITableViewController {
+    
+    
+    var listId = Int()
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.separatorStyle = .none
@@ -80,6 +87,9 @@ class CasesDetailTableViewController: UITableViewController {
         var fall = 0
         
         switch (row){
+        print(listId);
+        
+        switch (flag){
                 
             case 0 :
                 
@@ -95,6 +105,30 @@ class CasesDetailTableViewController: UITableViewController {
                 
                 
             
+                  let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
+                do {
+                    
+                    let item = try jsonFile.getJSONData();
+                    
+                    let usecase = item[listId]["Usecase"].string!
+                    let datum = item[listId]["Datum"].string!
+                    let ort = item[listId]["Location"].string!
+                    if(usecase == "autounfall"){
+                        cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
+                    }
+                    if(usecase == "zugverspätung"){
+                        cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
+                    }
+                    
+                    
+                    cell.HeaderTitel?.text = usecase
+                    cell.HeaderLocation?.text = ort
+                    cell.HeaderDate?.text = datum
+                    
+                }
+                catch {
+                    print(error)
+                }
             
             return cell
             
@@ -115,6 +149,34 @@ class CasesDetailTableViewController: UITableViewController {
             
             cell.PersonHeadline?.text = "Beteiligter"
             cell.PersonName?.text = "Max Mustermann"
+            do {
+                
+                let item = try jsonFile.getJSONData();
+                
+               let name = item[listId]["Name"].string!
+                if(name != ""){
+                
+                let adresse = item[listId]["Adresse"].string!
+                let telefon = item[listId]["Telefonnummer"].string!
+                let kennzeichen = item[listId]["Kennzeichen"].string!
+                
+                cell.PersonHeadline?.text = "Beteiligter"
+                cell.PersonName?.text = name
+                cell.PersonAdresse?.text = adresse
+                cell.PersonTelefon?.text = telefon
+                cell.Kennzeichen?.text = kennzeichen
+                }else{
+                    cell.PersonName?.text = "Es war keine andere Person am Autounfall beteiligt oder der Besitzer war innerhalb von 30 Minuten nicht auffindbar. Du hast womöglich einen Zettel mit deinen Daten hinterlassen und die Polizei informiert."
+
+                }
+                
+            }
+            catch {
+                print(error)
+            }
+
+            
+           
             return cell
             
             

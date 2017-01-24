@@ -27,6 +27,7 @@ class Faelle{
     
     var location = "";
     var datum = "";
+    var image = "";
     //var Unfallort: String;
 
     /*var unfallHergang: String;
