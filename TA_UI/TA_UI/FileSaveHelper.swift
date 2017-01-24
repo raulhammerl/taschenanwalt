@@ -152,122 +152,6 @@ class FileSaveHelper {
             throw FileErrors.FileNotSaved
         }
         }
-        
-        
-        //AusgabeTest
-        /*let jsonData = try NSData(contentsOfFile: fullyQualifiedPath, options: NSData.ReadingOptions.mappedIfSafe)
-        let jsonOwn = JSON(data: jsonData as Data);
-        let id = jsonOwn[0]["ID"];
-        
-        //for(int i = 0; i<jsonOwn.count; i++){}
-        print(id);
-        for index in 0 ..< jsonOwn.count{
-       
-            if let userName = jsonOwn[index]["Vorname"].string {
-                print(userName);
-            }
-        }*/
-
-        
-                //wieder auskommentieren
-                /*if let jsonResult = try JSONSerialization.jsonObject(with: data as Data, options: []) as? NSArray {
-                    if let dict = jsonResult[0] as? NSDictionary {
-                        print(dict)
-                        items.append(dict as! [String : AnyObject]);                    }
-                }*/
-                
-                
-                //NSDATE to NSString
-              // let resultNSString = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)!
-                //print(resultNSString);
-                
-                //NSString to array
-                /*if let neu = resultNSString.data(using: String.Encoding.utf8.rawValue) {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: neu as Data, options: .mutableContainers) as? [String:Any]
-                        
-                        print(json)
-                    } catch {
-                        print("Something went wrong")
-                    }
-                }*/
-                
-        
-        //       let jsonDictionaryAlt = try JSONSerialization.jsonObject(with: dict as Data, options: .allowFragments) as! NSDictionary
-               
-                // let jsonFilePath = directoryPath + self.subDirectory + fileName;
-               /* print(jsonFilePath);
-                do {
-                    let file = try FileHandle(forWritingTo: (jsonFilePath)!)
-                    print(file);
-                    file.write(data as Data)
-                    print("JSON data was written to teh file successfully!")
-                } catch let error as NSError {
-                    print("Couldn't write to file: \(error.localizedDescription)")
-                }*/
-                
-                
-            
-                
-              
-            
-                
-                /*if !fileManager.createFile(atPath: fullyQualifiedPath, contents: jsonData as? Data, attributes: nil){
-                    throw FileErrors.FileNotSaved
-                }*/
-            
-            
-        
-       
-
-         
-
-
-           /* let resultNSString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue)!
-            
-                do {
-                    let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: .allowFragments) as! NSDictionary;
-                    
-                        if let responseParameter : NSDictionary = jsonResult["responseParameter"] as? NSDictionary {
-                            
-                            if let response : NSArray = responseParameter["ID"] as? NSArray {
-                                //response = response
-                                print("response ID : \(response)")
-                            }
-                        }
-                    
-                }
-                catch { print("Error while parsing: \(error)") }*/
-            
-           /* let dataDict = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
-            
-            print(dataDict)
-            
-            let contents = (dataDict as AnyObject).object("rows") as! NSMutableArray;
-
-            print(contents)
-            
-            //println( "contents is = \(_stdlib_getDemangledTypeName(contents))")
-            
-           let innerContents = contents[0]
-            
-            print(innerContents)
-            
-            //println( "inner contents is = \(_stdlib_getDemangledTypeName(innerContents))")
-            
-            let yourKey = (innerContents as AnyObject).objectForKey("ID") as? String
-            print(yourKey)
-            */
-
-            
-            
-            
-            
-        
-        
-           //let idArray = try jsonFile.getJSONData().value(forKey: "ID");
-            //print(idArray);
-
             
     }
     
@@ -305,24 +189,19 @@ class FileSaveHelper {
         guard let image = UIImage(contentsOfFile: fullyQualifiedPath) else {
             throw FileErrors.FileNotRead
         }
-        
         return image
     }
     
 //Wird nicht benutzt, da in der json Datei ein Array gespeichert wird --> wird mit swifty Json ausgelesen
     func getJSONData() throws -> JSON {
-        // 2
         guard fileExists else {
             throw FileErrors.FileNotFound
         }
-        
         do {
            
             let data = try NSData(contentsOfFile: fullyQualifiedPath, options: NSData.ReadingOptions.mappedIfSafe)
             let jsonData = JSON(data: data as Data);
 
-            //let jsonDictionary = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! NSDictionary
-            //items.append(jsonDictionary as! [String : AnyObject]);
             return jsonData
         } catch {
             throw FileErrors.FileNotRead
@@ -330,7 +209,7 @@ class FileSaveHelper {
     }
     
     
-    //Erzeugt ID (Int) für jeden einzelnen Autounfall, der in der json Datei gespeichert wird. Wird in APIRequest als Id übergeben
+    //Erzeugt ID (Int) für jeden einzelnen Fall, der in der json Datei gespeichert wird. Wird in APIRequest als Id übergeben
     func getId() throws -> Int{
         var id = 0;
         if(fileExists == true){

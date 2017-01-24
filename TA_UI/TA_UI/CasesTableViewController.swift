@@ -76,6 +76,10 @@ class CasesTableViewController: UITableViewController{
                 cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
 
             }
+            if(usecase == "zugausfall"){
+                cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
+                
+            }
             
             let label = usecase + " " + item["ID"].string!
             let datum = item["Datum"].string!
@@ -93,6 +97,7 @@ class CasesTableViewController: UITableViewController{
         
     }
     
+    //Übergibt die Id, der geklickten Cell an CasesDetailTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fallDetail", let destination = segue.destination as? CasesDetailTableViewController, let listIndex = tableView.indexPathForSelectedRow?.row
         {
