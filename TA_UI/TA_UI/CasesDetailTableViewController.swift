@@ -30,13 +30,18 @@ class CasesDetailPersonCell: UITableViewCell {
 
 }
 
+class CasesDetailTrainCell: UITableViewCell {
+
+
+
+}
 
 
 
 class CasesDetailTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-//        self.tableView.separatorStyle = .none
+        self.tableView.separatorStyle = .none
         self.view.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
 
     }
@@ -65,15 +70,16 @@ class CasesDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
        
-        var flag = indexPath.row
+        var row = indexPath.row
+        var fall = 0
         
-        switch (flag){
+        switch (row){
                 
             case 0 :
                 
@@ -111,6 +117,10 @@ class CasesDetailTableViewController: UITableViewController {
             cell.PersonName?.text = "Max Mustermann"
             return cell
             
+            
+        case 3 :
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell") as! CasesDetailTrainCell
+            return cell
         default: print("error"); let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell", for: indexPath) as! CasesHeadlineTableViewCell; return cell; break
         }
     }
