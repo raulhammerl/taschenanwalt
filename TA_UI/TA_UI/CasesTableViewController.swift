@@ -76,6 +76,10 @@ class CasesTableViewController: UITableViewController{
                 cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
 
             }
+            if(usecase == "zugausfall"){
+                cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
+                
+            }
             
             let label = usecase + " " + item["ID"].string!
             let datum = item["Datum"].string!

@@ -62,58 +62,115 @@ class APIRequest
                         //var items = [[String:AnyObject]]()
                         //var allContent = [Faelle]();
                         let datum = self.aktuellesDatum();
-                        fall.datum = datum;
-                        fall.identi = idHelper;
+                        allgemein.datum = datum;
+                        allgemein.identi = idHelper;
                 if let usecaseJson = json["result"]["parameters"]["usecase"].string{
-                    let usecaseneu = usecaseJson;
-                    fall.usecase = usecaseneu;
-                }
-                if let verletzteJson = json["result"]["parameters"]["verletzte"].string{
-                    fall.verletzte = verletzteJson;
-                }
-                if let sachschadenJson = json["result"]["parameters"]["sachschaden"].string{
-                    fall.sachschaden = sachschadenJson;
-                }
-                if let alkoholJson = json["result"]["parameters"]["alkohol"].string{
-                    fall.alkohol = alkoholJson;
-                }
-                if let auslandJson = json["result"]["parameters"]["ausland"].string{
-                    fall.ausland = auslandJson;
-                }
-                if let autobahnJson = json["result"]["parameters"]["autobahn"].string{
-                    fall.autobahn = autobahnJson;
+                    allgemein.usecase = usecaseJson;
                 }
                 
-                if let nameJson = json["result"]["parameters"]["name"].string{
-                    fall.name = nameJson;
-                }
-                if let adresseJson = json["result"]["parameters"]["adresse"].string{
-                    fall.adresse = adresseJson;
-                }
-                if let telefonnrJson = json["result"]["parameters"]["telefonnr"].string{
-                    fall.telefonnr = telefonnrJson;
-                }
-                if let kennzeichenJson = json["result"]["parameters"]["kennzeichen"].string{
-                    fall.kennzeichen = kennzeichenJson;
-                }
-                        //let fall = Faelle(vorname: vorname , wohnort: wohnort, identi: idHelper, datum: datum);
-                        /* let daten = try NSData(data);
-                         let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
-                         //items.append(jsonDictionary as! [String : AnyObject]);
-                         print(jsonDictionary);*/
-                     if let done = json["result"]["parameters"]["done-variable"].string{
+                if(allgemein.usecase == "autounfall"){
+                
+                    if let verletzteJson = json["result"]["parameters"]["verletzte"].string{
+                        fall.verletzte = verletzteJson;
+                    }
+                    if let sachschadenJson = json["result"]["parameters"]["sachschaden"].string{
+                        fall.sachschaden = sachschadenJson;
+                    }
+                    if let alkoholJson = json["result"]["parameters"]["alkohol"].string{
+                        fall.alkohol = alkoholJson;
+                    }
+                    if let auslandJson = json["result"]["parameters"]["ausland"].string{
+                        fall.ausland = auslandJson;
+                    }
+                    if let autobahnJson = json["result"]["parameters"]["autobahn"].string{
+                        fall.autobahn = autobahnJson;
+                    }
+                    if let nameJson = json["result"]["parameters"]["name"].string{
+                        fall.name = nameJson;
+                    }
+                    if let adresseJson = json["result"]["parameters"]["adresse"].string{
+                        fall.adresse = adresseJson;
+                    }
+                    if let telefonnrJson = json["result"]["parameters"]["telefonnr"].string{
+                        fall.telefonnr = telefonnrJson;
+                    }
+                    if let kennzeichenJson = json["result"]["parameters"]["kennzeichen"].string{
+                        fall.kennzeichen = kennzeichenJson;
+                    }
+                    if let done = json["result"]["parameters"]["done-variable"].string{
                         if(done == "done" ){
                             print(fall);
                             print(fall.kennzeichen);
                             print(fall.telefonnr);
                             print(fall.adresse);
                             print(fall.name);
+                            
+                            self.saveInJsonAutounfall(autounfall: fall);
+                            
+                        }
+                    }
 
-                            self.saveInJson(autounfall: fall);
-
-                        }}
-                
+                }
+                if(allgemein.usecase == "zugausfall"){
+                    if let nameBahnJson = json["result"]["parameters"]["name"].string{
+                        zug.name = nameBahnJson;
+                    }
+                    if let adresseBahnJson = json["result"]["parameters"]["adresse"].string{
+                        zug.adresse = adresseBahnJson;
+                    }
+                    if let bankverbindungBahnJson = json["result"]["parameters"]["bankverbindung"].string{
+                        zug.bankverbindung = bankverbindungBahnJson;
+                    }
+                    if let startbahnhofBahnJson = json["result"]["parameters"]["startbahnhof"].string{
+                        zug.startbahnhof = startbahnhofBahnJson;
+                    }
+                    if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
+                        zug.zielbahnhof = zielbahnhofBahnJson;
+                    }
+                    if let done = json["result"]["parameters"]["done-variable"].string{
+                        if(done == "done" ){
                         
+                            
+                            self.saveInJsonZug(zugProblem: zug);
+                            
+                        }
+                    }
+                    
+                }
+                if(allgemein.usecase == "zugverspätung"){
+                    if let nameBahnJson = json["result"]["parameters"]["name"].string{
+                        zug.name = nameBahnJson;
+                    }
+                    if let adresseBahnJson = json["result"]["parameters"]["adresse"].string{
+                        zug.adresse = adresseBahnJson;
+                    }
+                    if let bankverbindungBahnJson = json["result"]["parameters"]["bankverbindung"].string{
+                        zug.bankverbindung = bankverbindungBahnJson;
+                    }
+                    if let startbahnhofBahnJson = json["result"]["parameters"]["startbahnhof"].string{
+                        zug.startbahnhof = startbahnhofBahnJson;
+                    }
+                    if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
+                        zug.zielbahnhof = zielbahnhofBahnJson;
+                    }
+                    if let done = json["result"]["parameters"]["done-variable"].string{
+                        if(done == "done" ){
+                            
+                            
+                            self.saveInJsonZug(zugProblem: zug);
+                            
+                        }
+                    }
+                    
+                }
+                
+                        //let fall = Faelle(vorname: vorname , wohnort: wohnort, identi: idHelper, datum: datum);
+                        /* let daten = try NSData(data);
+                         let jsonDictionary = try JSONSerialization.jsonObject(with: daten as Data, options: .allowFragments) as! NSDictionary
+                         //items.append(jsonDictionary as! [String : AnyObject]);
+                         print(jsonDictionary);*/
+                
+                
                         //if arrayResult = json["result"]["parameters"].array{
                         //  print(arrayResult);
                         //}
@@ -144,7 +201,7 @@ class APIRequest
         }
         task.resume()
     }
-    func saveInJson(autounfall: Faelle){
+    func saveInJsonAutounfall(autounfall: Faelle){
     
         //let savedData = ["Something": 1]
         
@@ -161,11 +218,11 @@ class APIRequest
         let valid = JSONSerialization.isValidJSONObject(jsonObject)*/
        
        
-        let x : Int = autounfall.identi;
+        let x : Int = allgemein.identi;
         let id = String(x);
    
         //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
-        let jsonDict = ["ID" : id, "Usecase" : autounfall.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : autounfall.datum, "Location" : autounfall.location];
+        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : autounfall.location];
         do {
            // let json = JSONSerializer.toJson(autounfall)
             //let dict = try JSONSerializer.toDictionary(json)
@@ -190,6 +247,54 @@ class APIRequest
         
         }
         //Try to save the file. If there are any errors, print them out.
+    
+    func saveInJsonZug(zugProblem: zugFall){
+        
+        //let savedData = ["Something": 1]
+        
+        /*let jsonObject: [String: AnyObject] = [
+         "type_id": 1 as AnyObject,
+         "model_id": 1 as AnyObject,
+         "transfer": [
+         "startDate": "10/04/2015 12:45",
+         "endDate": "10/04/2015 16:00"
+         ],
+         "custom": savedData
+         ]
+         
+         let valid = JSONSerialization.isValidJSONObject(jsonObject)*/
+        
+        
+        let x : Int = allgemein.identi;
+        let id = String(x);
+        
+        //let jsonDict = "[ {"person": {"name":"Dani","age":"24"}}, {"person": {"name":"ray","age":"70"}} ]"
+        let jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
+        do {
+            // let json = JSONSerializer.toJson(autounfall)
+            //let dict = try JSONSerializer.toDictionary(json)
+            //Assert
+            //let expected = "{\"fur\": true, \"weight\": 2.5, \"age\": 2, \"name\": \"An animal\", \"id\": 182371823}"
+            try jsonFile.saveFile(dataForJson: jsonDictZug as NSDictionary)
+            
+        }
+        catch {
+            print(error)
+        }
+        
+        
+        //Print out whether the file exists.
+        print("JSON file exists: \(jsonFile.fileExists)")
+        do{
+            try idHelper = jsonFile.getId();
+        }
+        catch{
+            print(error);
+        }
+        
+    }
+
+    
   
     func aktuellesDatum() -> String {
         //NSDate*today = [NSDate date];

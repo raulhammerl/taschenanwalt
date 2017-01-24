@@ -91,19 +91,33 @@ class CasesDetailTableViewController: UITableViewController {
                     let item = try jsonFile.getJSONData();
                     
                     let usecase = item[listId]["Usecase"].string!
-                    let datum = item[listId]["Datum"].string!
-                    let ort = item[listId]["Location"].string!
+                    
                     if(usecase == "autounfall"){
+                        let datum = item[listId]["Datum"].string!
+                        let ort = item[listId]["Location"].string!
                         cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
+                        cell.HeaderTitel?.text = usecase
+                        cell.HeaderLocation?.text = ort
+                        cell.HeaderDate?.text = datum
                     }
+                    
+                    
+                    
                     if(usecase == "zugverspätung"){
+                        let datum = item[listId]["Datum"].string!
                         cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
+                        cell.HeaderTitel?.text = usecase
+                        cell.HeaderDate?.text = datum
+                    }
+                    if(usecase == "zugausfall"){
+                        let datum = item[listId]["Datum"].string!
+                        cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
+                        cell.HeaderTitel?.text = usecase
+                        cell.HeaderDate?.text = datum
                     }
                     
                     
-                    cell.HeaderTitel?.text = usecase
-                    cell.HeaderLocation?.text = ort
-                    cell.HeaderDate?.text = datum
+                   
                     
                 }
                 catch {
@@ -130,23 +144,56 @@ class CasesDetailTableViewController: UITableViewController {
             do {
                 
                 let item = try jsonFile.getJSONData();
+                let usecase = item[listId]["Usecase"].string!
+
+                if(usecase == "autounfall"){
+                    let name = item[listId]["Name"].string!
+                    if(name != ""){
                 
-               let name = item[listId]["Name"].string!
-                if(name != ""){
+                        let adresse = item[listId]["Adresse"].string!
+                        let telefon = item[listId]["Telefonnummer"].string!
+                        let kennzeichen = item[listId]["Kennzeichen"].string!
                 
-                let adresse = item[listId]["Adresse"].string!
-                let telefon = item[listId]["Telefonnummer"].string!
-                let kennzeichen = item[listId]["Kennzeichen"].string!
-                
-                cell.PersonHeadline?.text = "Beteiligter"
-                cell.PersonName?.text = name
-                cell.PersonAdresse?.text = adresse
-                cell.PersonTelefon?.text = telefon
-                cell.Kennzeichen?.text = kennzeichen
-                }else{
-                    cell.PersonName?.text = "Es war keine andere Person am Autounfall beteiligt oder der Besitzer war innerhalb von 30 Minuten nicht auffindbar. Du hast womöglich einen Zettel mit deinen Daten hinterlassen und die Polizei informiert."
+                        cell.PersonHeadline?.text = "Beteiligter"
+                        cell.PersonName?.text = name
+                        cell.PersonAdresse?.text = adresse
+                        cell.PersonTelefon?.text = telefon
+                        cell.Kennzeichen?.text = kennzeichen
+                    }else{
+                        cell.PersonName?.text = "Es war keine andere Person am Autounfall beteiligt oder der Besitzer war innerhalb von 30 Minuten nicht auffindbar. Du hast womöglich einen Zettel mit deinen Daten hinterlassen und die Polizei informiert."
+                    }
+                }
+                if(usecase == "zugausfall"){
+                     let name = item[listId]["Name"].string!
+                     let adresse = item[listId]["Adresse"].string!
+                    let bankverbindung = item[listId]["Bankverbindung"].string!
+                    let startbahnhof = item[listId]["Startbahnhof"].string!
+                    let zielbahnhof = item[listId]["Zielbahnhof"].string!
+
+                    cell.PersonHeadline?.text = "Persönliche Informationen"
+                    cell.PersonName?.text = name
+                    cell.PersonAdresse?.text = adresse
+                    cell.PersonTelefon?.text = bankverbindung
+                    cell.Kennzeichen?.text = startbahnhof + zielbahnhof
+
 
                 }
+                if(usecase == "zugverspätung"){
+                    let name = item[listId]["Name"].string!
+                    let adresse = item[listId]["Adresse"].string!
+                    let bankverbindung = item[listId]["Bankverbindung"].string!
+                    let startbahnhof = item[listId]["Startbahnhof"].string!
+                    let zielbahnhof = item[listId]["Zielbahnhof"].string!
+                    
+                    cell.PersonHeadline?.text = "Persönliche Informationen"
+                    cell.PersonName?.text = name
+                    cell.PersonAdresse?.text = adresse
+                    cell.PersonTelefon?.text = bankverbindung
+                    cell.Kennzeichen?.text = startbahnhof + zielbahnhof
+                    
+                    
+                }
+
                 
             }
             catch {
