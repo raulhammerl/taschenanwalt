@@ -12,8 +12,7 @@ import UIKit
 
     var idHelper = 0;
 
-    let fall = Faelle();
-    let zug = zugFall();
+ 
     let allgemein = allgemeinFall();
 
 

@@ -84,25 +84,12 @@ class CasesDetailTableViewController: UITableViewController {
 
        
         var row = indexPath.row
-        var fall = 0
         
         switch (row){
-        print(listId);
-        
-        switch (flag){
+     
                 
             case 0 :
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
-                // User Name on cells
-                
-                cell.HeaderTitel?.text = "Autounfall"
-                cell.HeaderLocation?.text = "München"
-                cell.HeaderDate?.text = "22.03.16"
-                cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
-               
-              
-                
+ 
                 
             
                   let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
@@ -161,8 +148,7 @@ class CasesDetailTableViewController: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
             
-            cell.PersonHeadline?.text = "Beteiligter"
-            cell.PersonName?.text = "Max Mustermann"
+           
             do {
                 
                 let item = try jsonFile.getJSONData();
@@ -227,9 +213,9 @@ class CasesDetailTableViewController: UITableViewController {
             return cell
             
             
-        case 3 :
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell") as! CasesDetailTrainCell
-            return cell
+       //e case 3 :
+          //  let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell") as! CasesDetailTrainCell
+            //return cell
         default: print("error"); let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell", for: indexPath) as! CasesHeadlineTableViewCell; return cell; break
         }
     }

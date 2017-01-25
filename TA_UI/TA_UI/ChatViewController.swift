@@ -18,7 +18,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // light grey (red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     // orange1 UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1.0)
     
-
     var messages = [JSQMessage]()
     
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -281,7 +280,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let postalCode = (pm.postalCode != nil) ? pm.postalCode : ""
                 let locality = (pm.locality != nil) ? pm.locality : ""
                 self.address = street! + " " + number! + "\n" + postalCode! + " " + locality!
-                fall.location = self.address;   // Für Speichern in json-Datei
+                allgemein.location = self.address;   // Für Speichern in json-Datei
             } else {
                 print("No data received from Geocoder")
             }
