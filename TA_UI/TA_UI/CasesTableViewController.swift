@@ -11,7 +11,7 @@ import UIKit
 
 class CasesTableViewCell: UITableViewCell {
    
-    @IBOutlet weak var CasesLogo: UIImageView!
+   
     
     @IBOutlet weak var CasesHeadline: UILabel!
     
@@ -69,7 +69,7 @@ class CasesTableViewController: UITableViewController{
             let item = json[indexPath.row]
             
             let usecase = item["Usecase"].string!
-            if(usecase == "autounfall"){
+           /* if(usecase == "autounfall"){
                 cell.CasesLogo.image = UIImage (named: "LogoAutounfall")
             }
             if(usecase == "zugverspätung"){
@@ -79,7 +79,7 @@ class CasesTableViewController: UITableViewController{
             if(usecase == "zugausfall"){
                 cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
                 
-            }
+            }*/
             
             let label = usecase + " " + item["ID"].string!
             let datum = item["Datum"].string!

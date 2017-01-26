@@ -1,5 +1,11 @@
 import UIKit
 
+
+class DictionaryCell: UITableViewCell{
+    @IBOutlet weak var DicitonaryHeadline: UILabel!
+}
+
+
 class DictionaryTableViewController: UITableViewController, UISearchResultsUpdating {
     
     // Usecases anlegen
@@ -26,23 +32,19 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
         usecases += [autounfall, zugverspaetung, zugausfall]
         
         // Bei Eintippen in Suchleiste wird TableView quasi durch neue TableView ersetzt (für die der ResultsController zuständig ist)
-        self.searchController = UISearchController(searchResultsController: self.resultsController)
-        
-        // Resultscontroller mitteilen, wo er nach den Daten schauen soll
-        self.resultsController.tableView.dataSource = self
-        self.resultsController.tableView.delegate = self
-        
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.searchController.searchResultsUpdater = self
+    
         // Suchleiste im Header einfügen
         self.tableView.tableHeaderView = self.searchController.searchBar
-        
-        // Zuständig für Update der Ergebnisse nach Eingabe in Suchleiste
-        self.searchController.searchResultsUpdater = self
         
         // Animationseinstellungen
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
+       // definesPresentationContext = true
     }
+    
+    
     
     // Funktion, die bei jeder Eingabe in Suchleiste aufgerufen wird
     func updateSearchResults(for searchController: UISearchController) {
@@ -54,62 +56,77 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
                 return false
             }
         }
+        NSLog("filteredUseCases: \(self.filteredUsecases)")
         // TableView mit Ergebnissen updaten
-        self.resultsController.tableView.reloadData()
-        self.resultsController.tableView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
+        self.tableView.reloadData()
+   
     }
     
     // Anzahl der Reihen in TableView festlegen
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.tableView {
-            return self.usecases.count
-        } else {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return self.filteredUsecases.count
+
+        } else {
+           return self.usecases.count
         }
+    
     }
     
     // Elemente aus jeweiligem Array in jeweils eine Reihe der TableView schreiben
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
-        if tableView == self.tableView {
-            cell.textLabel?.text = self.usecases[indexPath.row].name
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryCell") as! DictionaryCell
+        
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            cell.DicitonaryHeadline?.text = self.filteredUsecases[indexPath.row].name
         } else {
-            cell.textLabel?.text = self.filteredUsecases[indexPath.row].name
+            cell.DicitonaryHeadline?.text = self.usecases[indexPath.row].name
         }
+        
         return cell
+        
+        
+       /* if tableView == self.tableView {
+         cell.DicitonaryHeadline?.text = self.usecases[indexPath.row].name
+
+        } else {
+            cell.DicitonaryHeadline?.text = self.filteredUsecases[indexPath.row].name
+        }
+        return cell*/
     }
     
-    // Funktion, die bei Klick auf einen Usecase aufgerufen wird
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Zur Detailansicht wechseln
-        self.performSegue(withIdentifier: "ShowDetails", sender: indexPath)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
+
     // Daten an die Detailansicht übergeben
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var path = tableView.indexPathForSelectedRow
+        let cell = tableView.cellForRow(at: path!) as! DictionaryCell
+        
+        
         if segue.identifier == "ShowDetails" {
             if let destination = segue.destination as? DictionaryDetailsViewController {
-                var path = tableView.indexPathForSelectedRow
+                
                 if path != nil {
-                    if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
+                    if (cell.DicitonaryHeadline?.text)! == "Autounfall" {
                         destination.content = autounfall.content
-                    } else if (tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
+                    } else if (cell.DicitonaryHeadline?.text)! == "Zugverspätung" {
                         destination.content = zugverspaetung.content
                     } else {
                         destination.content = zugausfall.content
                     }
-                } else {
+                } /*else {
+                    
+                    //WIESO?
                     path = resultsController.tableView.indexPathForSelectedRow
-                    if (resultsController.tableView.cellForRow(at: path!)?.textLabel?.text)! == "Autounfall" {
+                    if (cell.DicitonaryHeadline?.text)! == "Autounfall" {
                         destination.content = autounfall.content
-                    } else if (resultsController.tableView.cellForRow(at: path!)?.textLabel?.text)! == "Zugverspätung" {
+                    } else if (cell.DicitonaryHeadline?.text)! == "Zugverspätung" {
                         destination.content = zugverspaetung.content
                     } else {
                         destination.content = zugausfall.content
                     }
-                }
+                }*/
             }
         }
     }
