@@ -23,10 +23,9 @@ class Faelle{
     var telefonnr = "";
     var kennzeichen = "";
     
-    var location = "";
     //var datum = "";
 
-    //var unfallHergang: String;
+    var unfallHergang = "";
  
 }
 

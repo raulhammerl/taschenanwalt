@@ -13,5 +13,6 @@ class allgemeinFall{
     var identi = 0;
     var datum = "";
     var usecase = "";
+    var location = "";
 
 }

@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class APIRequest
 {
+    let fall = Faelle();
+    let zug = zugFall();
     //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
     //let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
     let baseUrl = "https://api.api.ai/v1/query?" //API.AI base url for api requests
@@ -51,7 +53,7 @@ class APIRequest
             } */
             //print("result here !")
             //result = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
-
+           
             
             //Json Datei, erzeugt von Chatbot, wird hier ausgelesen
             if let returnedData = data
@@ -69,79 +71,83 @@ class APIRequest
                 if(allgemein.usecase == "autounfall"){
                 
                     if let verletzteJson = json["result"]["parameters"]["verletzte"].string{
-                        fall.verletzte = verletzteJson;
+                        self.fall.verletzte = verletzteJson;
                     }
                     if let sachschadenJson = json["result"]["parameters"]["sachschaden"].string{
-                        fall.sachschaden = sachschadenJson;
+                        self.fall.sachschaden = sachschadenJson;
                     }
                     if let alkoholJson = json["result"]["parameters"]["alkohol"].string{
-                        fall.alkohol = alkoholJson;
+                        self.fall.alkohol = alkoholJson;
                     }
                     if let auslandJson = json["result"]["parameters"]["ausland"].string{
-                        fall.ausland = auslandJson;
+                        self.fall.ausland = auslandJson;
                     }
                     if let autobahnJson = json["result"]["parameters"]["autobahn"].string{
-                        fall.autobahn = autobahnJson;
+                        self.fall.autobahn = autobahnJson;
                     }
                     if let nameJson = json["result"]["parameters"]["name"].string{
-                        fall.name = nameJson;
+                        self.fall.name = nameJson;
                     }
                     if let adresseJson = json["result"]["parameters"]["adresse"].string{
-                        fall.adresse = adresseJson;
+                        self.fall.adresse = adresseJson;
                     }
                     if let telefonnrJson = json["result"]["parameters"]["telefonnr"].string{
-                        fall.telefonnr = telefonnrJson;
+                        self.fall.telefonnr = telefonnrJson;
                     }
                     if let kennzeichenJson = json["result"]["parameters"]["kennzeichen"].string{
-                        fall.kennzeichen = kennzeichenJson;
+                        self.fall.kennzeichen = kennzeichenJson;
                     }
-                    if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
-                            self.saveInJsonAutounfall(autounfall: fall);
+                    if let unfallhergangJson = json["result"]["parameters"]["unfallhergang"].string{
+                        self.fall.unfallHergang = unfallhergangJson;
+                    }
+                    
+                    if let done = json["result"]["parameters"]["done"].string{
+                        if(done == "" ){
+                            self.saveInJsonAutounfall(autounfall: self.fall);
                         }
                     }
                 }
                 if(allgemein.usecase == "zugausfall"){
                     if let nameBahnJson = json["result"]["parameters"]["name"].string{
-                        zug.name = nameBahnJson;
+                        self.zug.name = nameBahnJson;
                     }
                     if let adresseBahnJson = json["result"]["parameters"]["adresse"].string{
-                        zug.adresse = adresseBahnJson;
+                        self.zug.adresse = adresseBahnJson;
                     }
                     if let bankverbindungBahnJson = json["result"]["parameters"]["bankverbindung"].string{
-                        zug.bankverbindung = bankverbindungBahnJson;
+                        self.zug.bankverbindung = bankverbindungBahnJson;
                     }
                     if let startbahnhofBahnJson = json["result"]["parameters"]["startbahnhof"].string{
-                        zug.startbahnhof = startbahnhofBahnJson;
+                        self.zug.startbahnhof = startbahnhofBahnJson;
                     }
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
-                        zug.zielbahnhof = zielbahnhofBahnJson;
+                        self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
-                            self.saveInJsonZug(zugProblem: zug);
+                        if(done == "" ){
+                            self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
                 }
                 if(allgemein.usecase == "zugverspätung"){
                     if let nameBahnJson = json["result"]["parameters"]["name"].string{
-                        zug.name = nameBahnJson;
+                        self.zug.name = nameBahnJson;
                     }
                     if let adresseBahnJson = json["result"]["parameters"]["adresse"].string{
-                        zug.adresse = adresseBahnJson;
+                        self.zug.adresse = adresseBahnJson;
                     }
                     if let bankverbindungBahnJson = json["result"]["parameters"]["bankverbindung"].string{
-                        zug.bankverbindung = bankverbindungBahnJson;
+                        self.zug.bankverbindung = bankverbindungBahnJson;
                     }
                     if let startbahnhofBahnJson = json["result"]["parameters"]["startbahnhof"].string{
-                        zug.startbahnhof = startbahnhofBahnJson;
+                        self.zug.startbahnhof = startbahnhofBahnJson;
                     }
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
-                        zug.zielbahnhof = zielbahnhofBahnJson;
+                        self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
-                            self.saveInJsonZug(zugProblem: zug);
+                        if(done == "" ){
+                            self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
                     
@@ -166,7 +172,7 @@ class APIRequest
         let id = String(x);
    
         //Dictionary für json Datei
-        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : autounfall.location];
+        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Unfallhergang" : autounfall.unfallHergang] ;
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {

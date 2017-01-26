@@ -92,145 +92,21 @@ class CasesDetailTableViewController: UITableViewController {
 
        
         var row = indexPath.row
-        var fall = 0
-        let row = indexPath.row
-        
-        switch (row){
-        print(listId);
-        do {
-            let item = try jsonFile.getJSONData();
-        
-        switch (flag){
-                
-            case 0 :
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
-                // User Name on cells
-                
-                cell.HeaderTitel?.text = "Autounfall"
-                cell.HeaderLocation?.text = "München"
-                cell.HeaderDate?.text = "22.03.16"
-                cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
-               
-              
-                
-                
-            
-                  let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
-                do {
-                    
-                    let item = try jsonFile.getJSONData();
-                    
-                    let usecase = item[listId]["Usecase"].string!
-                    
-                    if(usecase == "autounfall"){
-                        let datum = item[listId]["Datum"].string!
-                        let ort = item[listId]["Location"].string!
-                        cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
-                        cell.HeaderTitel?.text = usecase
-                        cell.HeaderLocation?.text = ort
-                        cell.HeaderDate?.text = datum
-                    }
-                    
-                    
-                    
-                    if(usecase == "zugverspätung"){
-                        let datum = item[listId]["Datum"].string!
-                        cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
-                        cell.HeaderTitel?.text = usecase
-                        cell.HeaderDate?.text = datum
-                    }
-                    if(usecase == "zugausfall"){
-                        let datum = item[listId]["Datum"].string!
-                        cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
-                        cell.HeaderTitel?.text = usecase
-                        cell.HeaderDate?.text = datum
-                    }
-                    
-                    
-                   
-                    
-                }
-                catch {
-                    print(error)
-                }
-            
-            return cell
-            
-            
-            case 1 :
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
 
-                cell.DescriptionHeadline?.text = "Beschreibung"
-                cell.DescriptionText?.text = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim"
-                
-               
         
-            return cell
-            
-        case 2 :
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
-            
-            cell.PersonHeadline?.text = "Beteiligter"
-            cell.PersonName?.text = "Max Mustermann"
             do {
                 
                 let item = try jsonFile.getJSONData();
                 let usecase = item[listId]["Usecase"].string!
-        let usecase = item[listId]["Usecase"].string!
-
-                if(usecase == "autounfall"){
-                    let name = item[listId]["Name"].string!
-                    if(name != ""){
+                
         
              switch (usecase){
                 
-                        let adresse = item[listId]["Adresse"].string!
-                        let telefon = item[listId]["Telefonnummer"].string!
-                        let kennzeichen = item[listId]["Kennzeichen"].string!
+                
                 case "autounfall":
                 
-                        cell.PersonHeadline?.text = "Beteiligter"
-                        cell.PersonName?.text = name
-                        cell.PersonAdresse?.text = adresse
-                        cell.PersonTelefon?.text = telefon
-                        cell.Kennzeichen?.text = kennzeichen
-                    }else{
-                        cell.PersonName?.text = "Es war keine andere Person am Autounfall beteiligt oder der Besitzer war innerhalb von 30 Minuten nicht auffindbar. Du hast womöglich einen Zettel mit deinen Daten hinterlassen und die Polizei informiert."
-                    }
-                }
-                if(usecase == "zugausfall"){
-                     let name = item[listId]["Name"].string!
-                     let adresse = item[listId]["Adresse"].string!
-                    let bankverbindung = item[listId]["Bankverbindung"].string!
-                    let startbahnhof = item[listId]["Startbahnhof"].string!
-                    let zielbahnhof = item[listId]["Zielbahnhof"].string!
-
-                    cell.PersonHeadline?.text = "Persönliche Informationen"
-                    cell.PersonName?.text = name
-                    cell.PersonAdresse?.text = adresse
-                    cell.PersonTelefon?.text = bankverbindung
-                    cell.Kennzeichen?.text = startbahnhof + zielbahnhof
-
-
-                }
-                if(usecase == "zugverspätung"){
-                    let name = item[listId]["Name"].string!
-                    let adresse = item[listId]["Adresse"].string!
-                    let bankverbindung = item[listId]["Bankverbindung"].string!
-                    let startbahnhof = item[listId]["Startbahnhof"].string!
-                    let zielbahnhof = item[listId]["Zielbahnhof"].string!
-                    
-                    cell.PersonHeadline?.text = "Persönliche Informationen"
-                    cell.PersonName?.text = name
-                    cell.PersonAdresse?.text = adresse
-                    cell.PersonTelefon?.text = bankverbindung
-                    cell.Kennzeichen?.text = startbahnhof + zielbahnhof
                     switch (row){
-                    
-                    
-                }
+                        
                         case 0 :
                             
                               let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
@@ -277,10 +153,6 @@ class CasesDetailTableViewController: UITableViewController {
                             default: print("presentation error")
                         }
                 
-            }
-            catch {
-                print(error)
-            }
                 
         
                 case "zugausfall":
@@ -322,17 +194,16 @@ class CasesDetailTableViewController: UITableViewController {
                         default: print("presentation error")
                             }
                 
-             default: print("presentation error no usecase")}
+             default: print("presentation error no usecase")
+                        }
         
             
-        } catch {
-            print("json error: \(error)")
-        }
 
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
-        return cell
-    }
-    
-    
+           }catch {
+            print("json error: \(error)")
+                    }
+        }
 }
+
+
