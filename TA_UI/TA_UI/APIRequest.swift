@@ -97,8 +97,12 @@ class APIRequest
                     if let kennzeichenJson = json["result"]["parameters"]["kennzeichen"].string{
                         self.fall.kennzeichen = kennzeichenJson;
                     }
-                    if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
+                    if let unfallhergangJson = json["result"]["parameters"]["unfallhergang"].string{
+                        self.fall.unfallHergang = unfallhergangJson;
+                    }
+                    
+                    if let done = json["result"]["parameters"]["done"].string{
+                        if(done == "" ){
                             self.saveInJsonAutounfall(autounfall: self.fall);
                         }
                     }
@@ -120,7 +124,7 @@ class APIRequest
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
+                        if(done == "" ){
                             self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
@@ -142,7 +146,7 @@ class APIRequest
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
                     if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "done" ){
+                        if(done == "" ){
                             self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
@@ -168,7 +172,7 @@ class APIRequest
         let id = String(x);
    
         //Dictionary für json Datei
-        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location];
+        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Unfallhergang" : autounfall.unfallHergang] ;
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {

@@ -25,7 +25,7 @@ class Faelle{
     
     //var datum = "";
 
-    //var unfallHergang: String;
+    var unfallHergang = "";
  
 }
 

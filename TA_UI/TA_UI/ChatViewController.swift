@@ -17,7 +17,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // dark blue (red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
     // light grey (red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     // orange1 UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1.0)
-    
+    var anzahlImages = 1;
+
     var messages = [JSQMessage]()
     
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -212,7 +213,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             // want to make sure the app doesn’t crash so I’m using a guard statement. In this instance, it’s a little overkill because I know the image exists, but if you were downloading one from the internet it is a good idea to use.
             // Now we save our file using the try keyword and our saveFile(imageFile:) method.
             var fallNummerImage = String(idHelper);
-            var anzahlImages = 1;
             var imageFileName = fallNummerImage + String(anzahlImages);
             let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                    try imageToSave.saveFileImage(image: image)
