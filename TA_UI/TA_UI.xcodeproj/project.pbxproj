@@ -28,6 +28,7 @@
 		C492D4551DF9AB310067418F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C492D4531DF9AB310067418F /* LaunchScreen.storyboard */; };
 		C492D4601DF9AB310067418F /* TA_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D45F1DF9AB310067418F /* TA_UITests.swift */; };
 		C492D46B1DF9AB310067418F /* TA_UIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D46A1DF9AB310067418F /* TA_UIUITests.swift */; };
+		C4A2CC5C1E3E4F26006E8807 /* TaschenanwaltLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A2CC5B1E3E4F26006E8807 /* TaschenanwaltLogo.png */; };
 		C4E4D9F31E2F8DAB00A87E97 /* LogoAutounfall.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D9F21E2F8DAB00A87E97 /* LogoAutounfall.png */; };
 		C4E4D9F51E2FE63A00A87E97 /* TrainLogoBluetoOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D9F41E2FE63A00A87E97 /* TrainLogoBluetoOrange.png */; };
 		C4E4D9F71E2FEB7E00A87E97 /* TrainLogoGreytoOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D9F61E2FEB7E00A87E97 /* TrainLogoGreytoOrange.png */; };
@@ -86,6 +87,7 @@
 		C492D4661DF9AB310067418F /* TA_UIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TA_UIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C492D46A1DF9AB310067418F /* TA_UIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA_UIUITests.swift; sourceTree = "<group>"; };
 		C492D46C1DF9AB310067418F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4A2CC5B1E3E4F26006E8807 /* TaschenanwaltLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaschenanwaltLogo.png; sourceTree = "<group>"; };
 		C4E4D9F21E2F8DAB00A87E97 /* LogoAutounfall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoAutounfall.png; sourceTree = "<group>"; };
 		C4E4D9F41E2FE63A00A87E97 /* TrainLogoBluetoOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainLogoBluetoOrange.png; sourceTree = "<group>"; };
 		C4E4D9F61E2FEB7E00A87E97 /* TrainLogoGreytoOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainLogoGreytoOrange.png; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		C4FF0C4E1DF9D2A10053ED8C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C4A2CC5B1E3E4F26006E8807 /* TaschenanwaltLogo.png */,
 				C4FF0C511DF9D2BE0053ED8C /* Apple_logo_orange.png */,
 				C4E4D9F21E2F8DAB00A87E97 /* LogoAutounfall.png */,
 				C4E4D9F41E2FE63A00A87E97 /* TrainLogoBluetoOrange.png */,
@@ -353,6 +356,7 @@
 			files = (
 				C4FF0C521DF9D2BE0053ED8C /* Apple_logo_orange.png in Resources */,
 				C492D4551DF9AB310067418F /* LaunchScreen.storyboard in Resources */,
+				C4A2CC5C1E3E4F26006E8807 /* TaschenanwaltLogo.png in Resources */,
 				C492D4521DF9AB310067418F /* Assets.xcassets in Resources */,
 				C4E4D9F31E2F8DAB00A87E97 /* LogoAutounfall.png in Resources */,
 				C3FE260E1E1E875300BBC2B2 /* Main.storyboard in Resources */,
@@ -680,7 +684,9 @@
 			baseConfigurationReference = B4A59E9A285E483081FFD181 /* Pods-TA_UI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 69293MP62Q;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = TA_UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "raul.TA-UI";
@@ -694,7 +700,9 @@
 			baseConfigurationReference = 11C21387388906D22E54423B /* Pods-TA_UI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 69293MP62Q;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = TA_UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "raul.TA-UI";

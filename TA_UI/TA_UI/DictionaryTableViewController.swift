@@ -42,7 +42,8 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-    }
+        
+}
     
     
     
