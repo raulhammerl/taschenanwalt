@@ -66,17 +66,10 @@ class CasesDetailTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
+    
     }
     
     
-    
-    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -84,8 +77,21 @@ class CasesDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
+        do {
+            
+            let item = try jsonFile.getJSONData();
+            let usecase = item[listId]["Usecase"].string!
+            
+            switch (usecase){
+            case "autounfall": return 3
+            case "zugverspätung": return 2
+            case "zugausfall":   return 2
+            default: print ("database error"); return 0}
+            
+        }catch {
+            print("json error: \(error)"); return 0}
+        
+            
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -151,6 +157,8 @@ class CasesDetailTableViewController: UITableViewController {
                             return cell
                         
                             default: print("presentation error")
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+                            return cell
                         }
                 
                 
@@ -191,10 +199,17 @@ class CasesDetailTableViewController: UITableViewController {
                         
                             return cell
                 
-                        default: print("presentation error")
+                    default: print("presentation error")
+                    //CHANGE
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+                    return cell
                             }
                 
              default: print("presentation error no usecase")
+             
+             //CHANGE
+             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+             return cell
                         }
         
             
@@ -202,7 +217,8 @@ class CasesDetailTableViewController: UITableViewController {
         
            }catch {
             print("json error: \(error)")
-                    }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+            return cell}
         }
 }
 

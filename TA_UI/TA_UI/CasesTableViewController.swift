@@ -45,7 +45,6 @@ class CasesTableViewController: UITableViewController{
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
          do {
             let jsonCount = try jsonFile.getJSONData();
             return jsonCount.count
@@ -69,23 +68,9 @@ class CasesTableViewController: UITableViewController{
             let item = json[indexPath.row]
             
             let usecase = item["Usecase"].string!
-           /* if(usecase == "autounfall"){
-                cell.CasesLogo.image = UIImage (named: "LogoAutounfall")
-            }
-            if(usecase == "zugverspätung"){
-                cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
-
-            }
-            if(usecase == "zugausfall"){
-                cell.CasesLogo.image = UIImage (named: "TrainLogoOrangetoGrey")
-                
-            }*/
-            
             let label = usecase + " " + item["ID"].string!
             let datum = item["Datum"].string!
             cell.CasesHeadline?.text = label
-            
-            
             cell.CasesDescription?.text = datum
     
         }

@@ -229,7 +229,7 @@ class APIRequest
     func getCurrentDate() -> String {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy hh:mm"
+        formatter.dateFormat = "dd.MM.yyyy"
         let result = formatter.string(from: date)
         return result;
     }
