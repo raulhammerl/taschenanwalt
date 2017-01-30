@@ -104,8 +104,11 @@ class CasesDetailTableViewController: UITableViewController {
                 
                 let item = try jsonFile.getJSONData();
                 let usecase = item[listId]["Usecase"].string!
+                let fallNummerImage = String(listId);
+                let imageFileName = fallNummerImage + String(anzahlImages);
+                let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                 
-        
+                
              switch (usecase){
                 
                 
@@ -117,9 +120,19 @@ class CasesDetailTableViewController: UITableViewController {
                             
                               let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
                         
+                              do {
+                                var imageName = fallNummerImage + String(anzahlImages)
+                                try cell.HeaderImage?.image = imageToSave.getImage(imageName:imageName);
+                              } catch {
+                                print(error)
+                              }
+
+                              
+                              
+                              
                               let datum = item[listId]["Datum"].string!
-                              let ort = item[listId]["Location"].string!
-                              cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
+                              let ort = item[listId]["Stadt"].string!
+                             // cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
                               cell.HeaderTitel?.text = usecase
                               cell.HeaderLocation?.text = ort
                               cell.HeaderDate?.text = datum
@@ -131,7 +144,7 @@ class CasesDetailTableViewController: UITableViewController {
                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
 
                                 cell.DescriptionHeadline?.text = "Beschreibung"
-                                cell.DescriptionText?.text = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat."
+                                cell.DescriptionText?.text = item[listId]["Unfallhergang"].string!
                             
                                 return cell
                         

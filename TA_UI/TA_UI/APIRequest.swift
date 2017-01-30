@@ -172,7 +172,7 @@ class APIRequest
         let id = String(x);
    
         //Dictionary für json Datei
-        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Unfallhergang" : autounfall.unfallHergang] ;
+        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Stadt" : allgemein.locality, "Unfallhergang" : autounfall.unfallHergang] ;
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {

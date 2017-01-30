@@ -68,10 +68,11 @@ class CasesTableViewController: UITableViewController{
             let item = json[indexPath.row]
             
             let usecase = item["Usecase"].string!
-            let label = usecase + " " + item["ID"].string!
+            
+            let label = usecase.capitalized
             let datum = item["Datum"].string!
             cell.CasesHeadline?.text = label
-            cell.CasesDescription?.text = datum
+            cell.CasesDescription?.text = "am " + datum
     
         }
         catch {
