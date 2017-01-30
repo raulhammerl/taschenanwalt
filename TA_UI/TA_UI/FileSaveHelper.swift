@@ -181,12 +181,13 @@ class FileSaveHelper {
     }
 
     //gespeichertes Bild anzeigen lassen
-    func getImage() throws -> UIImage {
+    func getImage(imageName:String) throws -> UIImage {
         guard fileExists else {
             throw FileErrors.FileNotFound
         }
-        
-        guard let image = UIImage(contentsOfFile: fullyQualifiedPath) else {
+       var path = "\(self.filePath)/\(imageName).jpg"
+       
+        guard let image = UIImage(contentsOfFile: path) else {
             throw FileErrors.FileNotRead
         }
         return image

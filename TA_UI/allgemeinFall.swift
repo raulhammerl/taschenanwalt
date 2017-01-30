@@ -14,5 +14,6 @@ class allgemeinFall{
     var datum = "";
     var usecase = "";
     var location = "";
+    var locality = "";
 
 }

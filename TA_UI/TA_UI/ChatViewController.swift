@@ -17,7 +17,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // dark blue (red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
     // light grey (red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     // orange1 UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1.0)
-    var anzahlImages = 1;
 
     var messages = [JSQMessage]()
     
@@ -27,6 +26,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     var locationManager : CLLocationManager!
     var location : CLLocation!
+    var locality : String!
     var address : String!
     let session = Int(arc4random_uniform(11111) + 1);
     
@@ -215,8 +215,8 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         do {
             // want to make sure the app doesn’t crash so I’m using a guard statement. In this instance, it’s a little overkill because I know the image exists, but if you were downloading one from the internet it is a good idea to use.
             // Now we save our file using the try keyword and our saveFile(imageFile:) method.
-            var fallNummerImage = String(idHelper);
-            var imageFileName = fallNummerImage + String(anzahlImages);
+            let fallNummerImage = String(idHelper);
+            let imageFileName = fallNummerImage + String(anzahlImages);
             let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                    try imageToSave.saveFileImage(image: image)
                 anzahlImages += 1
@@ -281,9 +281,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let street = (pm.thoroughfare != nil) ? pm.thoroughfare : ""
                 let number = (pm.subThoroughfare != nil) ? pm.subThoroughfare : ""
                 let postalCode = (pm.postalCode != nil) ? pm.postalCode : ""
-                let locality = (pm.locality != nil) ? pm.locality : ""
-                self.address = street! + " " + number! + "\n" + postalCode! + " " + locality!
-                allgemein.location = self.address;   // Für Speichern in json-Datei
+                self.locality = (pm.locality != nil) ? pm.locality : ""
+                self.address = street! + " " + number! + "\n" + postalCode! + " " + self.locality!
+                allgemein.location = self.address;
+                allgemein.locality = self.locality;// Für Speichern in json-Datei
             } else {
                 print("No data received from Geocoder")
             }
@@ -300,12 +301,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     //MARK - Setup
     extension ChatViewController {
         func addWelcomeMessage() {
-            /*for i in 1...15 {
-                let sender = (i%2 == 0) ? "Server" : self.senderId
-                let messageContent = "Message nr. \(i)"
-                let message = JSQMessage(senderId: sender, displayName: sender, text: messageContent)
-                self.messages.append(message!)
-            }*/
+           
             let sender = "321"
             let chatbotName = "Chatbot"
             let messageContent = "Willkommen beim Taschenanwalt. Ich helfe dir, wenn du einen Autounfall hattest oder dein Zug verspätet ist. Schreibe mir einfach was dein Problem ist und ich führe dich Schritt für Schritt zur Lösung deines Problems."
