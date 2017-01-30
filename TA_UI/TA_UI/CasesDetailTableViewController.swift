@@ -147,15 +147,9 @@ class CasesDetailTableViewController: UITableViewController {
                         case 1 :
                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
 
-<<<<<<< Updated upstream
-                                cell.DescriptionHeadline?.text = "Beschreibung"
-                                cell.DescriptionText?.text = item[listId]["Unfallhergang"].string!
-=======
                                 let beschreibung = item[listId]["Unfallhergang"].string!
-
                                 cell.DescriptionHeadline?.text = "Unfallhergang"
                                 cell.DescriptionText?.text = beschreibung
->>>>>>> Stashed changes
                             
                                 return cell
                         
