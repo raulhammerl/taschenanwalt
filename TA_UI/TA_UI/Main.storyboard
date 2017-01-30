@@ -141,7 +141,6 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="mMn-E0-ZPf">
                             <color key="tintColor" red="0.21875308039999999" green="0.30161531940000003" blue="0.39386040570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="buttonPressed:" destination="lij-mF-T2O" id="Hfc-cO-W5O"/>
                                 <segue destination="Ict-Ut-eqm" kind="show" id="Tz3-zT-svk"/>
                             </connections>
                         </barButtonItem>
@@ -305,7 +304,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gLz-kF-esF" id="6jc-MI-Mgi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="148.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTA-56-bfc">
@@ -492,7 +491,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggo-JM-U1j">
-                                            <rect key="frame" x="131.5" y="10.5" width="112.5" height="112.5"/>
+                                            <rect key="frame" x="131.5" y="11" width="112.5" height="112.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ggo-JM-U1j" secondAttribute="height" multiplier="1:1" id="fBj-fG-VyU"/>
                                             </constraints>

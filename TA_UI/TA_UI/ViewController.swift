@@ -29,6 +29,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        print("Went to main window.")
+        //let request = APIRequest()
+        //print("Deleting contexts")
     }
    
     override func viewWillDisappear(_ animated: Bool) {

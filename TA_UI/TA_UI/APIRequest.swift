@@ -16,17 +16,27 @@ class APIRequest
     //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
     //let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
     let baseUrl = "https://api.api.ai/v1/query?" //API.AI base url for api requests
-    let sessionId = 12345 //TODO: Generate a new session ID
+    //var sessionId: Int //Initialize with this value
     let lang = "de" //German language
     let clientKey = "4315190c91b6490f8868b3acda1542ad" //API.AI client authentication key
     //var idHelper = 0;
-    func sendRequest(request: String, callback: @escaping (String) -> ())
+    
+    /*init()
     {
+        self.sessionId = 12345
+    } */
+    
+    func sendRequest(session: Int, request: String, callback: @escaping (String) -> ())
+    {
+        //sessionId += 3
+        //print("sessionId: " + String(self.sessionId))
+        print("session parameter: " + String(session))
         let escapedRequest = request.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         //let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
         let queryUrl = baseUrl+"query="+escapedRequest!
         //let completeUrl = baseUrl + "query="+escapedRequest!+"&lang="+lang+"&sessionId="+sessionId
-        let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
+        //let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
+        let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(session)
         let url = URL(string: completeUrl)
         print(request);
         //print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
@@ -240,13 +250,14 @@ class APIRequest
     {
         //Tell Chatbot API that all contexts in the chat should be deleted
         //Send HTTP DELETE Request
-        let contextUrl = "https://api.api.ai/v1/contexts?" //URL for making delete requests
+        /*let contextUrl = "https://api.api.ai/v1/contexts?" //URL for making delete requests
         let queryUrl = contextUrl+"sessionId="+String(sessionId)
         let url = URL(string: queryUrl)
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "DELETE" //change method from default to DELETE
         urlRequest.setValue("Bearer "+clientKey, forHTTPHeaderField: "Authorization")//set HTTP auth header
         let session = URLSession.shared
+        print("About to send delete request")
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let returnedData = data
             {
@@ -254,7 +265,10 @@ class APIRequest
                 print(json)
             }
             
-        }
+        } */
+        /*print("Incrementing by 1" + String(self.sessionId))
+        self.sessionId += 1 //Increment the sessionId so new session is established
+        print("After incrementing Session Id: " + String(self.sessionId)) */
     }
     
 }

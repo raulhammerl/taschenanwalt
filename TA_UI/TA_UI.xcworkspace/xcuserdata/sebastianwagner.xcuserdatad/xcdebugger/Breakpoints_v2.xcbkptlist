@@ -10,13 +10,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TA_UI/ChatViewController.swift"
-            timestampString = "505587469.467143"
+            timestampString = "507468380.716994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TA_UI/ChatViewController.swift"
+            timestampString = "507468545.097376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TA_UI.ChatViewController.session.setter : Swift.Int"
+                  moduleName = "TA_UI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sebastianwagner/taschenanwalt/taschenanwalt/TA_UI/TA_UI/ChatViewController.swift"
+                  timestampString = "507468690.994587"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TA_UI.ChatViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; TA_UI.ChatViewController"
+                  moduleName = "TA_UI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sebastianwagner/taschenanwalt/taschenanwalt/TA_UI/TA_UI/ChatViewController.swift"
+                  timestampString = "507468690.998053"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "301">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TA_UI.ChatViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TA_UI.ChatViewController&gt;"
+                  moduleName = "TA_UI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sebastianwagner/taschenanwalt/taschenanwalt/TA_UI/TA_UI/ChatViewController.swift"
+                  timestampString = "507468691.001787"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "223">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

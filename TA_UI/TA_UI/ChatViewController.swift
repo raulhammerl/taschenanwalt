@@ -28,11 +28,11 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var locationManager : CLLocationManager!
     var location : CLLocation!
     var address : String!
+    let session = Int(arc4random_uniform(11111) + 1);
     
     override func viewWillAppear(_ animated: Bool) {
        self.collectionView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.senderDisplayName = "abc"
         self.setup()
         self.addWelcomeMessage()
+        print("Deleting contexts in viewDidLoad() of ChatViewController")
+        //self.api.deleteContexts()
+        //self.session += 1
         //self.finishReceivingMessage()
         
         //make avatars size zero
@@ -58,7 +61,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        //self.session += 1
     }
     
     
@@ -146,10 +149,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         //Show typing indicator
         self.showTypingIndicator = 	true
         //Get the response from the chat bot
-        api.sendRequest(request: text) { (result) -> Void in
+        self.api.sendRequest(session: self.session, request: text) { (result) -> Void in
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
-                self.reloadMessagesView()
+                //self.reloadMessagesView()
                 //self.finishSendingMessage()
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.finishReceivingMessage(animated: true)
@@ -228,7 +231,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.finishSendingMessage(animated: true)
         
         //Add message to let API know photo has been sent
-        self.api.sendRequest(request: "PHOTOADDED") { (result) -> Void in
+        self.api.sendRequest(session: self.session, request: "PHOTOADDED") { (result) -> Void in
             self.showTypingIndicator = 	false
             self.addMessage(withId: "321", name: "Chatbot", text: result)
             self.reloadMessagesView()
@@ -251,7 +254,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             
             //Add message to let API know location has been sent
-            self.api.sendRequest(request: "LOCATIONSEND") { (result) -> Void in
+            self.api.sendRequest(session: self.session, request: "LOCATIONSEND") { (result) -> Void in
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
                 self.reloadMessagesView()
