@@ -16,17 +16,18 @@ class APIRequest
     //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
     //let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
     let baseUrl = "https://api.api.ai/v1/query?" //API.AI base url for api requests
-    let sessionId = 12345 //TODO: Generate a new session ID
+    //let sessionId = 12345 //TODO: Generate a new session ID
     let lang = "de" //German language
     let clientKey = "4315190c91b6490f8868b3acda1542ad" //API.AI client authentication key
     //var idHelper = 0;
-    func sendRequest(request: String, callback: @escaping (String) -> ())
+    func sendRequest(session: Int, request: String, callback: @escaping (String) -> ())
     {
         let escapedRequest = request.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         //let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
         let queryUrl = baseUrl+"query="+escapedRequest!
         //let completeUrl = baseUrl + "query="+escapedRequest!+"&lang="+lang+"&sessionId="+sessionId
-        let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
+        //let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
+        let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(session)
         let url = URL(string: completeUrl)
         print(request);
         //print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
