@@ -22,9 +22,9 @@ class CasesDetailDescriptionCell: UITableViewCell {
 }
 
 class CasesDetailPersonCell: UITableViewCell {
-   
+    
     @IBOutlet var Kennzeichen: UILabel!
-
+    
     @IBOutlet weak var PersonName: UILabel!
     
     @IBOutlet weak var PersonAdresse: UILabel!
@@ -61,7 +61,7 @@ class CasesDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.separatorStyle = .none
         self.view.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
-
+        
     }
     
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class CasesDetailTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-    
+        
     }
     
     
@@ -81,177 +81,218 @@ class CasesDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         do {
             
             let item = try jsonFile.getJSONData();
             let usecase = item[listId]["Usecase"].string!
+            var anzahlRowAutounfall = 5
             
             switch (usecase){
-            case "autounfall": return 4
-            case "zugverspätung": return 2
-            case "zugausfall":   return 2
+            case "autounfall":
+                if(item[listId]["Name"].string! == ""){
+                     anzahlRowAutounfall -= 1
+                }
+                if(item[listId]["Unfallhergang"].string! == ""){
+                     anzahlRowAutounfall -= 1
+                }
+                if(item[listId]["Sachschaden"].string! == "nein" && item[listId]["Verletzte"].string! == "nein"){
+                    anzahlRowAutounfall -= 1
+                }
+                if(item[listId]["Sachschaden"].string! == "" && item[listId]["Verletzte"].string! == ""){
+                    anzahlRowAutounfall -= 1
+                }
+                return anzahlRowAutounfall
+                
+            case "zugverspätung": return 3
+            case "zugausfall":   return 3
             default: print ("database error"); return 0}
             
         }catch {
             print("json error: \(error)"); return 0}
         
-            
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-       
+        
+        
         let row = indexPath.row
-
         
-            do {
-                
-                let item = try jsonFile.getJSONData();
-                let usecase = item[listId]["Usecase"].string!
-                let fallNummerImage = String(listId);
-                let imageFileName = fallNummerImage + String(anzahlImages);
-                let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                
-                
-             switch (usecase){
-                
-                
-                case "autounfall":
-                
-                    switch (row){
-                        
-                        case 0 :
-                            
-                              let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
-                        
-                              do {
-                                var imageName = fallNummerImage + String(anzahlImages)
-                                try cell.HeaderImage?.image = imageToSave.getImage(imageName:imageName);
-                              } catch {
-                                print(error)
-                              }
-
-                              
-                              
-                              
-                              let datum = item[listId]["Datum"].string!
-                              let ort = item[listId]["Stadt"].string!
-                             // cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
-                              cell.HeaderTitel?.text = usecase
-                              cell.HeaderLocation?.text = ort
-                              cell.HeaderDate?.text = datum
-                              
-                              return cell
-                        
-                        
-                        case 1 :
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
-
-                                let beschreibung = item[listId]["Unfallhergang"].string!
-                                cell.DescriptionHeadline?.text = "Unfallhergang"
-                                cell.DescriptionText?.text = beschreibung
-                            
-                                return cell
-                        
-                        case 2 :
-                            
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
-                            
-                            
-                           // cell.PersonHeadline?.text = "Beteiligter"
-                            
-                            
-                                        let name = item[listId]["Name"].string!
-                                        let adresse = item[listId]["Adresse"].string!
-                                        let telefon = item[listId]["Telefonnummer"].string!
-                                        let kennzeichen = item[listId]["Kennzeichen"].string!
-                            
-                                //        cell.PersonHeadline?.text = "Beteiligter"
-                                        cell.PersonName?.text = name
-                                        cell.PersonAdresse?.text = adresse
-                                        cell.PersonTelefon?.text = telefon
-                                        cell.Kennzeichen?.text = kennzeichen
-                            
-                           
-                            return cell
-                        
-                        
-                        case 3 :
-                            
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-                            return cell
-                        
-                        default: print("presentation error")
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
-                            return cell
-                        }
-                
-                
-                
         
-                case "zugausfall":
-                    
-                    switch (row){
-                        
-                        case 0 :
-                        
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
-                            let datum = item[listId]["Datum"].string!
-                            let ort = item[listId]["Location"].string!
-                            cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
-                            cell.HeaderTitel?.text = usecase
-                            cell.HeaderLocation?.text = ort
-                            cell.HeaderDate?.text = datum
-                            
-                            return cell
-                        
-                        case 1 :
-                        
-                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
-
-                             let name = item[listId]["Name"].string!
-                             let adresse = item[listId]["Adresse"].string!
-                             let bankverbindung = item[listId]["Bankverbindung"].string!
-                             let startbahnhof = item[listId]["Startbahnhof"].string!
-                             let zielbahnhof = item[listId]["Zielbahnhof"].string!
-                             
-                             cell.TrainName?.text = name
-                             cell.TrainAddress?.text = adresse
-                             cell.TrainIban?.text = bankverbindung
-                             cell.TrainStartStation?.text = startbahnhof
-                             cell.TrainEndStation?.text = zielbahnhof
-                            // cell.TrainID?.text =
-                             cell.TrainStatus?.text = "ausgefallen"
-                        
-                            return cell
-                        
-                        case 2 :
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-                            cell.CasesImage1?.image = UIImage (named:"TaschenanwaltLogo")
-                            
-                            return cell
-                
-                    default: print("presentation error")
-                    //CHANGE
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
-                    return cell
-                            }
-                
-             default: print("presentation error no usecase")
-             
-             //CHANGE
-             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
-             return cell
-                        }
-        
+        do {
             
+            let item = try jsonFile.getJSONData();
+            let usecase = item[listId]["Usecase"].string!
+            
+            
+            
+            switch (usecase){
+                
+                
+            case "autounfall":
+                
+                switch (row){
+                    
+                case 0 :
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
+                    
+                    let datum = item[listId]["Datum"].string!
+                    let ort = item[listId]["Stadt"].string!
+                    cell.HeaderImage?.image = UIImage (named:"LogoAutounfall")
+                    cell.HeaderTitel?.text = usecase.capitalized
+                    cell.HeaderLocation?.text = ort
+                    cell.HeaderDate?.text = datum
+                    
+                    return cell
+                    
+                case 1 :
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+                    let fallNummerImage = String(listId);
+                    let imageFileName = fallNummerImage + String(anzahlImages);
+                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                    do {
+                        var imageName = fallNummerImage + String(anzahlImages)
+                        //cell.??.image
+                        //try cell.image = imageToSave.getImage(imageName:imageName);
+                    } catch {
+                        
+                        print(error)
+                    }
+                    
+                    
+                    
+                    return cell
+                    
+                case 2 :
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
+                    
+                    let beschreibung = item[listId]["Unfallhergang"].string!
+                    cell.DescriptionHeadline?.text = "Unfallhergang"
+                    cell.DescriptionText?.text = beschreibung
+                    
+                    return cell
+                    
+                case 3 :
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
+                    
+            
+                    
+                    let name = item[listId]["Name"].string!
+                    let adresse = item[listId]["Adresse"].string!
+                    let telefon = item[listId]["Telefonnummer"].string!
+                    let kennzeichen = item[listId]["Kennzeichen"].string!
+                    
+                    //cell.PersonHeadline?.text = "Beteiligter"
+                    cell.PersonName?.text = name
+                    cell.PersonAdresse?.text = adresse
+                    cell.PersonTelefon?.text = telefon
+                    cell.Kennzeichen?.text = kennzeichen
+                    
+                    
+                    return cell
+                    
+                case 4:
+                    
+                    //Zelle auf Sachschaden Verletzte anpassen
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
+                    
+                    let sachschaden = item[listId]["Sachschaden"].string!
+                    let verletzte = item[listId]["Verletzte"].string!
+                    
+                    return cell
 
-        
-           }catch {
+                    
+                default: print("presentation error")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+                return cell
+                }
+                
+                
+                
+                
+            case "zugausfall", "zuverspätung":
+                
+                switch (row){
+                    
+                case 0 :
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
+                    let datum = item[listId]["Datum"].string!
+                    cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
+                    cell.HeaderTitel?.text = usecase
+                    cell.HeaderDate?.text = datum
+                    
+                    return cell
+                    
+                case 1:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
+                    //bilder
+                    /*let fallNummerImage = String(listId);
+                    let imageFileName = fallNummerImage + String(anzahlImages);
+                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                    do {
+                        var imageName = fallNummerImage + String(anzahlImages)
+                        //cell.??.image
+                        //try cell.image = imageToSave.getImage(imageName:imageName);
+                    } catch {
+                        
+                        print(error)
+                    }
+                    
+                    */
+                    
+                    return cell
+                case 2:
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+                    
+                    let name = item[listId]["Name"].string!
+                    let adresse = item[listId]["Adresse"].string!
+                    let bankverbindung = item[listId]["Bankverbindung"].string!
+                    let startbahnhof = item[listId]["Startbahnhof"].string!
+                    let zielbahnhof = item[listId]["Zielbahnhof"].string!
+                    
+                    cell.TrainName?.text = name
+                    cell.TrainAddress?.text = adresse
+                    cell.TrainIban?.text = bankverbindung
+                    cell.TrainStartStation?.text = startbahnhof
+                    cell.TrainEndStation?.text = zielbahnhof
+                    // cell.TrainID?.text =
+                    cell.TrainStatus?.text = "ausgefallen"
+                    
+                    return cell
+                    
+                case 2 :
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+                    cell.CasesImage1?.image = UIImage (named:"TaschenanwaltLogo")
+                    
+                    return cell
+                    
+                default: print("presentation error")
+                //CHANGE
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+                return cell
+                }
+                
+            default: print("presentation error no usecase")
+            
+            //CHANGE
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
+            return cell
+            }
+            
+            
+            
+            
+        }catch {
             print("json error: \(error)")
             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
             return cell}
-        }
+    }
 }
 
 

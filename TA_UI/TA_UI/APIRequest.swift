@@ -102,7 +102,7 @@ class APIRequest
                     }
                     
                     if let done = json["result"]["parameters"]["done"].string{
-                        if(done == "" ){
+                        if(done == "" || done == "done"){
                             self.saveInJsonAutounfall(autounfall: self.fall);
                         }
                     }
@@ -123,8 +123,8 @@ class APIRequest
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
-                    if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "" ){
+                    if let done = json["result"]["parameters"]["done"].string{
+                        if(done == "done" || done == ""){
                             self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
@@ -145,8 +145,8 @@ class APIRequest
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
-                    if let done = json["result"]["parameters"]["done-variable"].string{
-                        if(done == "" ){
+                    if let done = json["result"]["parameters"]["done"].string{
+                        if(done == "done" || done == ""){
                             self.saveInJsonZug(zugProblem: self.zug);
                         }
                     }
