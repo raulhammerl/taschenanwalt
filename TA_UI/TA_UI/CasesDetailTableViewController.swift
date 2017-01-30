@@ -11,7 +11,6 @@ import UIKit
 
 class CasesHeadlineTableViewCell: UITableViewCell {
     @IBOutlet weak var HeaderImage: UIImageView!
-    
     @IBOutlet weak var HeaderDate: UILabel!
     @IBOutlet weak var HeaderTitel: UILabel!
     @IBOutlet weak var HeaderLocation: UILabel!
@@ -19,25 +18,22 @@ class CasesHeadlineTableViewCell: UITableViewCell {
 
 class CasesDetailDescriptionCell: UITableViewCell {
     @IBOutlet weak var DescriptionHeadline: UILabel!
-    
     @IBOutlet weak var DescriptionText: UITextView!
 }
 
 class CasesDetailPersonCell: UITableViewCell {
-    @IBOutlet weak var PersonHeadline: UILabel!
-
-    @IBOutlet weak var PersonName: UILabel!
-    @IBOutlet weak var PersonAdresse: UILabel!
-    @IBOutlet weak var PersonTelefon: UILabel!
-
+   
     @IBOutlet var Kennzeichen: UILabel!
 
+    @IBOutlet weak var PersonName: UILabel!
+    
+    @IBOutlet weak var PersonAdresse: UILabel!
+    @IBOutlet weak var PersonKennzeichen: UILabel!
+    
+    @IBOutlet weak var PersonTelefon: UILabel!
 }
 
 class CasesDetailTrainCell: UITableViewCell {
-
-
-
     @IBOutlet weak var TrainStartStation: UILabel!
     @IBOutlet weak var TrainEndStation: UILabel!
     @IBOutlet weak var TrainID: UILabel!
@@ -45,6 +41,14 @@ class CasesDetailTrainCell: UITableViewCell {
     @IBOutlet weak var TrainIban: UILabel!
     @IBOutlet weak var TrainName: UILabel!
     @IBOutlet weak var TrainAddress: UILabel!
+}
+
+class CasesImageCell: UITableViewCell{
+    @IBOutlet weak var CasesImage1: UIImageView!
+    
+    @IBOutlet weak var CasesImage2: UIStackView!
+    
+    
 }
 
 
@@ -63,7 +67,7 @@ class CasesDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.estimatedRowHeight = 60
+        self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
     
@@ -83,7 +87,7 @@ class CasesDetailTableViewController: UITableViewController {
             let usecase = item[listId]["Usecase"].string!
             
             switch (usecase){
-            case "autounfall": return 3
+            case "autounfall": return 4
             case "zugverspätung": return 2
             case "zugausfall":   return 2
             default: print ("database error"); return 0}
@@ -97,7 +101,7 @@ class CasesDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
        
-        var row = indexPath.row
+        let row = indexPath.row
 
         
             do {
@@ -143,8 +147,15 @@ class CasesDetailTableViewController: UITableViewController {
                         case 1 :
                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailDescriptionCell") as! CasesDetailDescriptionCell
 
+<<<<<<< Updated upstream
                                 cell.DescriptionHeadline?.text = "Beschreibung"
                                 cell.DescriptionText?.text = item[listId]["Unfallhergang"].string!
+=======
+                                let beschreibung = item[listId]["Unfallhergang"].string!
+
+                                cell.DescriptionHeadline?.text = "Unfallhergang"
+                                cell.DescriptionText?.text = beschreibung
+>>>>>>> Stashed changes
                             
                                 return cell
                         
@@ -153,26 +164,34 @@ class CasesDetailTableViewController: UITableViewController {
                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
                             
                             
-                            cell.PersonHeadline?.text = "Beteiligter"
+                           // cell.PersonHeadline?.text = "Beteiligter"
                             
                             
                                         let name = item[listId]["Name"].string!
                                         let adresse = item[listId]["Adresse"].string!
                                         let telefon = item[listId]["Telefonnummer"].string!
                                         let kennzeichen = item[listId]["Kennzeichen"].string!
-                                
-                                        cell.PersonHeadline?.text = "Beteiligter"
+                            
+                                //        cell.PersonHeadline?.text = "Beteiligter"
                                         cell.PersonName?.text = name
                                         cell.PersonAdresse?.text = adresse
                                         cell.PersonTelefon?.text = telefon
                                         cell.Kennzeichen?.text = kennzeichen
+                            
                            
                             return cell
                         
-                            default: print("presentation error")
+                        
+                        case 3 :
+                            
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+                            return cell
+                        
+                        default: print("presentation error")
                             let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
                             return cell
                         }
+                
                 
                 
         
@@ -210,6 +229,12 @@ class CasesDetailTableViewController: UITableViewController {
                             // cell.TrainID?.text =
                              cell.TrainStatus?.text = "ausgefallen"
                         
+                            return cell
+                        
+                        case 2 :
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+                            cell.CasesImage1?.image = UIImage (named:"TaschenanwaltLogo")
+                            
                             return cell
                 
                     default: print("presentation error")

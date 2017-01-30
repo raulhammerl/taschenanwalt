@@ -298,12 +298,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     //MARK - Setup
     extension ChatViewController {
         func addWelcomeMessage() {
-            /*for i in 1...15 {
-                let sender = (i%2 == 0) ? "Server" : self.senderId
-                let messageContent = "Message nr. \(i)"
-                let message = JSQMessage(senderId: sender, displayName: sender, text: messageContent)
-                self.messages.append(message!)
-            }*/
+           
             let sender = "321"
             let chatbotName = "Chatbot"
             let messageContent = "Willkommen beim Taschenanwalt. Ich helfe dir, wenn du einen Autounfall hattest oder dein Zug verspätet ist. Schreibe mir einfach was dein Problem ist und ich führe dich Schritt für Schritt zur Lösung deines Problems."
