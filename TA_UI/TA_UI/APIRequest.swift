@@ -60,7 +60,7 @@ class APIRequest
             {
                 print("Data has been returned.")
                 let json = JSON(data: returnedData)
-                let datum = self.aktuellesDatum();
+                let datum = self.getCurrentDate();
                 allgemein.datum = datum;
                 allgemein.identi = idHelper;
                 
@@ -226,12 +226,35 @@ class APIRequest
     }
 
   //aktuelles Datum + Uhrzeit
-    func aktuellesDatum() -> String {
+    func getCurrentDate() -> String {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy hh:mm"
         let result = formatter.string(from: date)
         return result;
+    }
+    
+    //Delete contexts in current session
+    //USE WITH CAUTION: This will reset the current state of the chat
+    func deleteContexts()
+    {
+        //Tell Chatbot API that all contexts in the chat should be deleted
+        //Send HTTP DELETE Request
+        let contextUrl = "https://api.api.ai/v1/contexts?" //URL for making delete requests
+        let queryUrl = contextUrl+"sessionId="+String(sessionId)
+        let url = URL(string: queryUrl)
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "DELETE" //change method from default to DELETE
+        urlRequest.setValue("Bearer "+clientKey, forHTTPHeaderField: "Authorization")//set HTTP auth header
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            if let returnedData = data
+            {
+                let json = JSON(data: returnedData)
+                print(json)
+            }
+            
+        }
     }
     
 }
