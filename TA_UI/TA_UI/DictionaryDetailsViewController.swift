@@ -13,12 +13,14 @@ class DictionaryDetailsViewController: UIViewController {
     
     @IBOutlet weak var details: UILabel!
    
+    @IBOutlet weak var text: UILabel!
+    
     var content: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        details.text = content
+        text?.text = content
     }
     
     override func didReceiveMemoryWarning() {

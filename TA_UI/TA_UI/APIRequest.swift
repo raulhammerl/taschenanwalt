@@ -77,15 +77,6 @@ class APIRequest
                     if let sachschadenJson = json["result"]["parameters"]["sachschaden"].string{
                         self.fall.sachschaden = sachschadenJson;
                     }
-                    if let alkoholJson = json["result"]["parameters"]["alkohol"].string{
-                        self.fall.alkohol = alkoholJson;
-                    }
-                    if let auslandJson = json["result"]["parameters"]["ausland"].string{
-                        self.fall.ausland = auslandJson;
-                    }
-                    if let autobahnJson = json["result"]["parameters"]["autobahn"].string{
-                        self.fall.autobahn = autobahnJson;
-                    }
                     if let nameJson = json["result"]["parameters"]["name"].string{
                         self.fall.name = nameJson;
                     }
@@ -173,7 +164,7 @@ class APIRequest
         let id = String(x);
    
         //Dictionary für json Datei
-        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Alkohol" : autounfall.alkohol, "Ausland" : autounfall.ausland, "Autobahn" : autounfall.autobahn, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Stadt" : allgemein.locality, "Unfallhergang" : autounfall.unfallHergang] ;
+        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Stadt" : allgemein.locality, "Unfallhergang" : autounfall.unfallHergang] ;
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {
