@@ -28,6 +28,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var location : CLLocation!
     var locality : String!
     var address : String!
+    let session = Int(arc4random_uniform(11111) + 1);
     
     override func viewWillAppear(_ animated: Bool) {
        self.collectionView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
@@ -39,6 +40,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         //SETUP
         self.senderId = "123" //Sollte man vllt noch ändern
+        self.senderId = "123"
         self.senderDisplayName = "abc"
         self.setup()
         self.addWelcomeMessage()
@@ -110,12 +112,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         }
     }
     
-    //send messages
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
-    }
+    
     
     //send a message with media item
     private func addMediaMessage(withId id: String, name: String, media: JSQMessageMediaData)
@@ -133,33 +130,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.getAdress()
     }
     
-    //send button handling
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
-        /*let messageItem = [
-            "senderId": senderId!,
-            "senderName": senderDisplayName!,
-            "text": text!,
-            ]*/
-        
-        self.addMessage(withId: senderId, name: senderDisplayName, text: text)
-        //Show typing indicator
-        self.showTypingIndicator = 	true
-        //Get the response from the chat bot
-        api.sendRequest(request: text) { (result) -> Void in
-                self.showTypingIndicator = 	false
-                self.addMessage(withId: "321", name: "Chatbot", text: result)
-                self.reloadMessagesView()
-                //self.finishSendingMessage()
-                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                self.finishReceivingMessage(animated: true)
-        }
-        
-        
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        finishSendingMessage()
-    }
     
     // Funktion, die beim Klick auf den Anhang aufgerufen wird
     override func didPressAccessoryButton(_ sender: UIButton!) {
@@ -228,7 +198,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.finishSendingMessage(animated: true)
         
         //Add message to let API know photo has been sent
-        self.api.sendRequest(request: "PHOTOADDED") { (result) -> Void in
+        self.api.sendRequest(session: session, request: "PHOTOADDED") { (result) -> Void in
             self.showTypingIndicator = 	false
             self.addMessage(withId: "321", name: "Chatbot", text: result)
             self.reloadMessagesView()
@@ -251,7 +221,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             
             //Add message to let API know location has been sent
-            self.api.sendRequest(request: "LOCATIONSEND") { (result) -> Void in
+            self.api.sendRequest(session: self.session, request: "LOCATIONSEND") { (result) -> Void in
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
                 self.reloadMessagesView()
@@ -306,6 +276,69 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.messages.append(message!)
             self.reloadMessagesView()
         }
+        
+        //send button handling
+        override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+            
+            /*let messageItem = [
+             "senderId": senderId!,
+             "senderName": senderDisplayName!,
+             "text": text!,
+             ]*/
+            
+            self.addMessage(withId: senderId, name: senderDisplayName, text: text)
+            //Show typing indicator
+            self.showTypingIndicator = 	true
+            self.finishSendingMessage()
+            fetchResponse(queryText: text)
+            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+            
+        }
+        
+        func fetchResponse(queryText: String)
+        {
+            //Get the response from the chat bot
+            api.sendRequest(session: session, request: queryText) { (result) -> Void in
+                self.callback(result: result)
+                /* self.showTypingIndicator = 	false
+                self.addWelcomeMessage()
+                print("Result in callback is: " + result)
+                self.addMessage(withId: "321", name: "Chatbot", text: result)
+                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
+                //self.reloadMessagesView()
+                //self.finishSendingMessage()
+                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                self.finishReceivingMessage() */
+            }
+            
+        }
+        
+        func callback(result: String)
+        {
+            //Delay is necessary because message will not be displayed otherwise
+            let dispatchTime = DispatchTime.now() + 0.5 //create delay
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime , execute: {
+                // This code will be executed with a delay
+                self.showTypingIndicator = 	false
+                print("Result in callback is: " + result)
+                self.addMessage(withId: "321", name: "Chatbot", text: result)
+                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
+                //self.reloadMessagesView()
+                //self.finishSendingMessage()
+                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                self.finishReceivingMessage()
+            })
+            
+        }
+        
+        //send messages
+        func addMessage(withId id: String, name: String, text: String) {
+            let message = JSQMessage(senderId: id, displayName: name, text: text)
+            messages.append(message!)
+            self.reloadMessagesView()
+        }
+        
+        
         
         func setup() {
             self.senderId = "1234"

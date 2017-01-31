@@ -12,7 +12,7 @@ import UIKit
 
     var idHelper = 0;
 
-    var anzahlImages = 1;
+    var anzahlImages = idHelper;
 
     let allgemein = allgemeinFall();
 
