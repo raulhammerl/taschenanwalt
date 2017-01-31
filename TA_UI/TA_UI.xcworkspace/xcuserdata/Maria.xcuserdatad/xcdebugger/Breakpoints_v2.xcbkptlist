@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
             endingLineNumber = "139"
-            landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
+            landmarkName = "didPressAccessoryButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -519,7 +519,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            landmarkName = "sendLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -535,7 +535,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            landmarkName = "sendLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -551,7 +551,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
             endingLineNumber = "217"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            landmarkName = "sendLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -706,7 +706,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TA_UI/CasesDetailTableViewController.swift"
-            timestampString = "507550627.7065"
+            timestampString = "507553520.928338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
@@ -722,7 +722,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TA_UI/CasesDetailTableViewController.swift"
-            timestampString = "507550627.7065"
+            timestampString = "507553520.928338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"

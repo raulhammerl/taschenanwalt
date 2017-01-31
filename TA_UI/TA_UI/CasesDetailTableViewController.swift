@@ -202,14 +202,14 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     return cell
                     
-                case 4:
+                /*case 4:
                     
                     //Zelle auf Sachschaden Verletzte anpassen
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
                     
                    // let verletzte = item[listId]["Verletzte"].string!
                     
-                    return cell
+                    return cell*/
 
                     
                 default: print("presentation error")
@@ -235,22 +235,19 @@ class CasesDetailTableViewController: UITableViewController {
                     return cell
                     
                 case 1:
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
+                      let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+
                     //bilder
-                    /*let fallNummerImage = String(listId);
+                    let fallNummerImage = String(listId);
                     let imageFileName = fallNummerImage + String(anzahlImages);
                     let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                     do {
-                        var imageName = fallNummerImage + String(anzahlImages)
-                        //cell.??.image
-                        //try cell.image = imageToSave.getImage(imageName:imageName);
+                        let imageName = fallNummerImage + String(anzahlImages)
+                        try cell.CasesImage1?.image = imageToSave.getImage(imageName:imageName);
                     } catch {
                         
                         print(error)
                     }
-                    
-                    */
-                    
                     return cell
                 case 2:
                     
@@ -272,11 +269,7 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     return cell
                     
-                case 2 :
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-                    cell.CasesImage1?.image = UIImage (named:"TaschenanwaltLogo")
-                    
-                    return cell
+            
                     
                 default: print("presentation error")
                 //CHANGE

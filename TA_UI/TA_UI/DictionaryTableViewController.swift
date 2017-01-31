@@ -101,7 +101,7 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
 
     // Daten an die Detailansicht übergeben
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var path = tableView.indexPathForSelectedRow
+        let path = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: path!) as! DictionaryCell
         
         

@@ -185,7 +185,7 @@ class FileSaveHelper {
         guard fileExists else {
             throw FileErrors.FileNotFound
         }
-       var path = "\(self.filePath)/\(imageName).jpg"
+       let path = "\(self.filePath)/\(imageName).jpg"
        
         guard let image = UIImage(contentsOfFile: path) else {
             throw FileErrors.FileNotRead
