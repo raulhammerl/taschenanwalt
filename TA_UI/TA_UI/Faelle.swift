@@ -10,9 +10,7 @@ class Faelle{
     //var usecase = "";
     var verletzte = "";
     var sachschaden = "";
-    var alkohol = "";
-    var ausland = "";
-    var autobahn = "";
+   
    
     var name = "";
     /*var nachname: String;
