@@ -39,6 +39,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         super.viewDidLoad()
         
         //SETUP
+        self.senderId = "123" //Sollte man vllt noch ändern
         self.senderId = "123"
         self.senderDisplayName = "abc"
         self.setup()
