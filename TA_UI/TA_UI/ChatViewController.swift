@@ -14,8 +14,8 @@ import SwiftyJSON
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     
-    // dark blue (red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
-    // light grey (red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
+    // dark blue UIColor(red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
+    // light grey UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     // orange1 UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1.0)
 
     var messages = [JSQMessage]()
@@ -39,12 +39,12 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         super.viewDidLoad()
         
         //SETUP
-        self.senderId = "123" //Sollte man vllt noch ändern
         self.senderId = "123"
         self.senderDisplayName = "abc"
         self.setup()
         self.addWelcomeMessage()
-        //self.finishReceivingMessage()
+        
+        
         
         //make avatars size zero
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
@@ -58,10 +58,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         locationManager.startUpdatingLocation()     // Manager starten
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
+   
     
     
     
