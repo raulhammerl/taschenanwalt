@@ -101,7 +101,7 @@ class CasesDetailTableViewController: UITableViewController {
             
             let item = try jsonFile.getJSONData();
             let usecase = item[listId]["Usecase"].string!
-            var anzahlRowAutounfall = 5
+            var anzahlRowAutounfall = 4
             
             switch (usecase){
             case "autounfall":
@@ -113,6 +113,9 @@ class CasesDetailTableViewController: UITableViewController {
                 }
                 
                 if(item[listId]["Sachschaden"].string! == "" && item[listId]["Verletzte"].string! == ""){
+                    anzahlRowAutounfall -= 1
+                }
+                if (item[listId]["ImageFile0"].string == nil){
                     anzahlRowAutounfall -= 1
                 }
                 return anzahlRowAutounfall
