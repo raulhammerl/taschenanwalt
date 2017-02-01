@@ -166,15 +166,13 @@ class CasesDetailTableViewController: UITableViewController {
                 case 1 :
                     
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-                    let fallNummerImage = String(listId);
-                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                
                     let getImageFile:FileSaveHelper = FileSaveHelper(fileName: "", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                     
                     
                     if let imagefile = item[listId]["ImageFile0"].string{
                         do {
                             print("imagefile: " + imagefile);
-                            //let imageName = fallNummerImage + String(anzahlImages)
                             try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
                         } catch {
                             print(error)
@@ -185,7 +183,6 @@ class CasesDetailTableViewController: UITableViewController {
                     if let imagefile2 = item[listId]["ImageFile1"].string{
                         do {
                             print("imagefile: " + imagefile2);
-                            //let imageName = fallNummerImage + String(anzahlImages)
                             try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
                         } catch {
                             print(error)
@@ -258,24 +255,21 @@ class CasesDetailTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
                     let datum = item[listId]["Datum"].string!
                     cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
+                    
                     cell.HeaderTitel?.text = usecase.capitalized
+                
                     cell.HeaderDate?.text = datum
                     
                     return cell
                     
                 case 1:
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-                    
-                    //bilder
-                    //let fallNummerImage = String(listId);
-                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                   
                     let fallNummerImage = String(listId);
-                    //let imageFileName = fallNummerImage + String(anzahlImages);
                     let getImageFile:FileSaveHelper = FileSaveHelper(fileName: fallNummerImage + "0", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                     
                     if let imagefile = item[listId]["ImageFile0"].string{
                         do {
-                            //let imageName = fallNummerImage + String(anzahlImages)
                             try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
                         } catch {
                             print(error)
