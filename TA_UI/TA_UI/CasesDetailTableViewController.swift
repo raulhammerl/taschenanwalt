@@ -49,16 +49,12 @@ class CasesDetailTrainCell: UITableViewCell {
 class CasesImageCell: UITableViewCell{
     @IBOutlet weak var CasesImage1: UIImageView!
     
-    @IBOutlet weak var CasesImage2: UIStackView!
-    
-    
 }
 
 
 
 class CasesDetailTableViewController: UITableViewController {
-    
-    
+        
     var listId = Int()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,10 +69,22 @@ class CasesDetailTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+     
         
     }
     
     
+    // Daten an die Detailansicht übergeben
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let path = tableView.indexPathForSelectedRow
+        let cell = tableView.cellForRow(at: path!) as! CasesImageCell
+        
+        if segue.identifier == "ShowImageDetail" {
+            if let destination = segue.destination as? ImageDetailView {
+                destination.imageToShow = cell.CasesImage1?.image
+            }
+        }
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

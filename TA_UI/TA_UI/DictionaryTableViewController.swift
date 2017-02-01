@@ -114,10 +114,17 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
                 if path != nil {
                     if (cell.DicitonaryHeadline?.text)! == "Autounfall" {
                         destination.content = autounfall.content
+                        destination.logo = UIImage (named: "LogoAutounfall")
+                        destination.headlineText = "Autounfall"
+                        
                     } else if (cell.DicitonaryHeadline?.text)! == "Zugverspätung" {
                         destination.content = zugverspaetung.content
+                        destination.logo = UIImage (named: "TrainLogoBluetoOrange")
+                        destination.headlineText = "Zugverspätung"
                     } else {
                         destination.content = zugausfall.content
+                        destination.logo = UIImage (named: "TrainLogoBluetoOrange")
+                        destination.headlineText = "Zugausfall"
                     }
                 } /*else {
                     
