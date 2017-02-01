@@ -503,8 +503,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
             endingLineNumber = "214"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
-            landmarkType = "7">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -519,7 +519,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            landmarkName = "sendLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -535,8 +535,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "ChatViewController"
-            landmarkType = "3">
+            landmarkName = "sendLocation(location:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
