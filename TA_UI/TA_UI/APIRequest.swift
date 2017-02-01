@@ -13,48 +13,23 @@ class APIRequest
 {
     let fall = Faelle();
     let zug = zugFall();
-    //let urlEndpoint: String = "http://taschenanwalt.pythonanywhere.com/talk/?msg="
-    //let urlEnvarint: String = "http://taschenanwalt.pythonanywhere.com/json/?msg="
+    
     let baseUrl = "https://api.api.ai/v1/query?" //API.AI base url for api requests
-    //let sessionId = 12345 //TODO: Generate a new session ID
     let lang = "de" //German language
     let clientKey = "4315190c91b6490f8868b3acda1542ad" //API.AI client authentication key
-    //var idHelper = 0;
     func sendRequest(session: Int, request: String, callback: @escaping (String) -> ())
     {
         let escapedRequest = request.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        //let url = URL(string: urlEnvarint + escapedRequest!) //create a url out of the endpoint
         let queryUrl = baseUrl+"query="+escapedRequest!
-        //let completeUrl = baseUrl + "query="+escapedRequest!+"&lang="+lang+"&sessionId="+sessionId
-        //let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(sessionId)
         let completeUrl = queryUrl+"&lang="+lang+"&sessionId="+String(session)
         let url = URL(string: completeUrl)
         print(request);
-        //print("Url endpoint + request: " + urlEnvarint + escapedRequest!);
         var urlRequest = URLRequest(url: url!) //make a request out of the URL
         urlRequest.setValue("Bearer "+clientKey, forHTTPHeaderField: "Authorization")//set HTTP auth header
         let session = URLSession.shared
-        //var result = ""
         //perform data request
         let task = session.dataTask(with: urlRequest) { data, response, error in
-            // do stuff with response, data & error here
-            //var d = data
-            //var r = response
-            //var e = error
-            //result = (data?.base64EncodedString())!
-            /*do {
-                //let jsonDictionary = try JSONSerialization.jsonObject(with: data! as Data, options: .allowFragments) as! [String: Any] //cast to JSON object
-                //let fulfillment = jsonDictionary[0]["fulfillment"] as? [String: Any]//get the fulfillment field
-                //let speech = fulfillment["speech"] as! String //extract the String response of chatbot
-                result = speech
-            }
-            catch
-            {
-                //do something
-            } */
-            //print("result here !")
-            //result = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
-           
+            
             
             //Json Datei, erzeugt von Chatbot, wird hier ausgelesen
             if let returnedData = data

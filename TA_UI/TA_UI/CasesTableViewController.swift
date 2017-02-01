@@ -57,7 +57,7 @@ class CasesTableViewController: UITableViewController{
          catch {
             print(error)
         }
-        EmptyMessage(message: "Es gibt noch keine alten Fälle.", viewController: self)
+        EmptyMessage(message: "Es sind noch keine alten Fälle vorhanden.", viewController: self)
         return 0
     }
     

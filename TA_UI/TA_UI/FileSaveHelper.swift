@@ -14,12 +14,7 @@ import SwiftyJSON
 class FileSaveHelper {
     var items = [[String:AnyObject]]()
 
-    //keyword convenience. This lets the compiler know that we will be calling our designated init from this method. Also, there are fewer parameters in the method. When we use this init, we won’t have to specify the directory.
-    //init that specifies  the directory.
     convenience init(fileName:String, fileExtension:fileExtension, subDirectory:String){
-        
-        // This is the call to the designated init.
-        // defaulting to the Document directory. You can set this up to be any directory you want, or you can create convenience inits for both directories, if you want.
         self.init(fileName:fileName, fileExtension:fileExtension, subDirectory:subDirectory, directory:.documentDirectory)
     }
     convenience init(fileName:String, fileExtension:fileExtension){

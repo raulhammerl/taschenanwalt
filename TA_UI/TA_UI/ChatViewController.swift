@@ -13,10 +13,6 @@ import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
-    
-    // dark blue UIColor(red: 56/255, green: 77/255, blue: 100/255, alpha: 1.0)
-    // light grey UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
-    // orange1 UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1.0)
 
     var messages = [JSQMessage]()
     
@@ -190,13 +186,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // Ausgewähltes Foto in Chat anzeigen
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
-        //ImageDisplay.image = image
         let photoMsg = JSQPhotoMediaItem(image: image)
-        //let mediaMsg = JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photoMsg)
-        //We have to use a do-try-catch because our saveFile method throws.
+     
         do {
-            // want to make sure the app doesn’t crash so I’m using a guard statement. In this instance, it’s a little overkill because I know the image exists, but if you were downloading one from the internet it is a good idea to use.
-            // Now we save our file using the try keyword and our saveFile(imageFile:) method.
+           
             let fallNummerImage = String(idHelper);
             let imageFileName = fallNummerImage + String(anzahlImages);
             let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
@@ -218,7 +211,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.showTypingIndicator = 	false
             self.addMessage(withId: "321", name: "Chatbot", text: result)
             self.reloadMessagesView()
-            //self.finishSendingMessage()
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             self.finishReceivingMessage(animated: true)
         }
@@ -243,7 +235,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
                 self.reloadMessagesView()
-                //self.finishSendingMessage()
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.finishReceivingMessage(animated: true)
                 }
@@ -299,12 +290,6 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         //send button handling
         override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
             
-            /*let messageItem = [
-             "senderId": senderId!,
-             "senderName": senderDisplayName!,
-             "text": text!,
-             ]*/
-            
             self.addMessage(withId: senderId, name: senderDisplayName, text: text)
             //Show typing indicator
             self.showTypingIndicator = 	true
@@ -319,15 +304,7 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             //Get the response from the chat bot
             api.sendRequest(session: session, request: queryText) { (result) -> Void in
                 self.callback(result: result)
-                /* self.showTypingIndicator = 	false
-                self.addWelcomeMessage()
-                print("Result in callback is: " + result)
-                self.addMessage(withId: "321", name: "Chatbot", text: result)
-                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
-                //self.reloadMessagesView()
-                //self.finishSendingMessage()
-                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                self.finishReceivingMessage() */
+               
             }
             
         }
@@ -339,29 +316,11 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             DispatchQueue.main.async {
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
-                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
-                //self.reloadMessagesView()
-                //self.finishSendingMessage()
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.finishReceivingMessage(animated: true)
             }
             
 
-            /*
-            //Delay is necessary because message will not be displayed otherwise
-            let dispatchTime = DispatchTime.now() + 0.5 //create delay
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime , execute: {
-                // This code will be executed with a delay
-                self.showTypingIndicator = 	false
-                print("Result in callback is: " + result)
-                self.addMessage(withId: "321", name: "Chatbot", text: result)
-                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
-                //self.reloadMessagesView()
-                //self.finishSendingMessage()
-                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                self.finishReceivingMessage()
-            })
-            */
         }
         
         //send messages

@@ -95,14 +95,6 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
         
         return cell
         
-        
-       /* if tableView == self.tableView {
-         cell.DicitonaryHeadline?.text = self.usecases[indexPath.row].name
-
-        } else {
-            cell.DicitonaryHeadline?.text = self.filteredUsecases[indexPath.row].name
-        }
-        return cell*/
     }
     
 
@@ -130,18 +122,7 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
                         destination.logo = UIImage (named: "TrainLogoBluetoOrange")
                         destination.headlineText = "Zugausfall"
                     }
-                } /*else {
-                    
-                    //WIESO?
-                    path = resultsController.tableView.indexPathForSelectedRow
-                    if (cell.DicitonaryHeadline?.text)! == "Autounfall" {
-                        destination.content = autounfall.content
-                    } else if (cell.DicitonaryHeadline?.text)! == "Zugverspätung" {
-                        destination.content = zugverspaetung.content
-                    } else {
-                        destination.content = zugausfall.content
-                    }
-                }*/
+                } 
             }
         }
     }
