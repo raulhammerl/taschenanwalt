@@ -199,12 +199,14 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         //Add message to let API know photo has been sent
         self.api.sendRequest(session: session, request: "PHOTOADDED") { (result) -> Void in
+            DispatchQueue.main.async {
             self.showTypingIndicator = 	false
             self.addMessage(withId: "321", name: "Chatbot", text: result)
             self.reloadMessagesView()
             //self.finishSendingMessage()
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             self.finishReceivingMessage(animated: true)
+        }
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -222,12 +224,14 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             //Add message to let API know location has been sent
             self.api.sendRequest(session: self.session, request: "LOCATIONSEND") { (result) -> Void in
+                DispatchQueue.main.async {
                 self.showTypingIndicator = 	false
                 self.addMessage(withId: "321", name: "Chatbot", text: result)
                 self.reloadMessagesView()
                 //self.finishSendingMessage()
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.finishReceivingMessage(animated: true)
+                }
             }
 
         })
@@ -315,6 +319,20 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         func callback(result: String)
         {
+            
+            print("Result in callback is: " + result)
+            DispatchQueue.main.async {
+                self.showTypingIndicator = 	false
+                self.addMessage(withId: "321", name: "Chatbot", text: result)
+                //self.messages.append(JSQMessage(senderId: "321", displayName: "Chatbot", text: "Hallo"))
+                //self.reloadMessagesView()
+                //self.finishSendingMessage()
+                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                self.finishReceivingMessage(animated: true)
+            }
+            
+
+            /*
             //Delay is necessary because message will not be displayed otherwise
             let dispatchTime = DispatchTime.now() + 0.5 //create delay
             DispatchQueue.main.asyncAfter(deadline: dispatchTime , execute: {
@@ -328,13 +346,13 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                 self.finishReceivingMessage()
             })
-            
+            */
         }
         
         //send messages
         func addMessage(withId id: String, name: String, text: String) {
             let message = JSQMessage(senderId: id, displayName: name, text: text)
-            messages.append(message!)
+            self.messages.append(message!)
             self.reloadMessagesView()
         }
         
