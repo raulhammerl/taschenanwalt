@@ -28,6 +28,7 @@
 		C492D4551DF9AB310067418F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C492D4531DF9AB310067418F /* LaunchScreen.storyboard */; };
 		C492D4601DF9AB310067418F /* TA_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D45F1DF9AB310067418F /* TA_UITests.swift */; };
 		C492D46B1DF9AB310067418F /* TA_UIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D46A1DF9AB310067418F /* TA_UIUITests.swift */; };
+		C497884A1E411D1F00EBBC63 /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49788491E411D1F00EBBC63 /* ImageDetailView.swift */; };
 		C4A2CC5C1E3E4F26006E8807 /* TaschenanwaltLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A2CC5B1E3E4F26006E8807 /* TaschenanwaltLogo.png */; };
 		C4E4D9F31E2F8DAB00A87E97 /* LogoAutounfall.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D9F21E2F8DAB00A87E97 /* LogoAutounfall.png */; };
 		C4E4D9F51E2FE63A00A87E97 /* TrainLogoBluetoOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D9F41E2FE63A00A87E97 /* TrainLogoBluetoOrange.png */; };
@@ -86,6 +87,7 @@
 		C492D4661DF9AB310067418F /* TA_UIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TA_UIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C492D46A1DF9AB310067418F /* TA_UIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA_UIUITests.swift; sourceTree = "<group>"; };
 		C492D46C1DF9AB310067418F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C49788491E411D1F00EBBC63 /* ImageDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
 		C4A2CC5B1E3E4F26006E8807 /* TaschenanwaltLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaschenanwaltLogo.png; sourceTree = "<group>"; };
 		C4E4D9F21E2F8DAB00A87E97 /* LogoAutounfall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoAutounfall.png; sourceTree = "<group>"; };
 		C4E4D9F41E2FE63A00A87E97 /* TrainLogoBluetoOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrainLogoBluetoOrange.png; sourceTree = "<group>"; };
@@ -182,11 +184,12 @@
 				C40E7A6A1E27E06500E8142B /* CasesDetailTableViewController.swift */,
 				C40E7A6B1E27E06500E8142B /* CasesTableViewController.swift */,
 				C40E7A6E1E27E07000E8142B /* DictionaryTableViewController.swift */,
-				84E04FF91E362FEB00050F5B /* UsecaseStore.swift */,
 				84E04FFB1E36305100050F5B /* DictionaryDetailsViewController.swift */,
+				84E04FF91E362FEB00050F5B /* UsecaseStore.swift */,
 				C3026FE11E1E8550001884A0 /* APIRequest.swift */,
 				C492D44A1DF9AB310067418F /* AppDelegate.swift */,
 				C492D44C1DF9AB310067418F /* ViewController.swift */,
+				C49788491E411D1F00EBBC63 /* ImageDetailView.swift */,
 				C492D4511DF9AB310067418F /* Assets.xcassets */,
 				C492D4531DF9AB310067418F /* LaunchScreen.storyboard */,
 				C3FE260D1E1E875300BBC2B2 /* Main.storyboard */,
@@ -524,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C15D78F1E26AEC600219753 /* Faelle.swift in Sources */,
+				C497884A1E411D1F00EBBC63 /* ImageDetailView.swift in Sources */,
 				84E04FFA1E362FEB00050F5B /* UsecaseStore.swift in Sources */,
 				C4FF0C4B1DF9BCB20053ED8C /* ChatViewController.swift in Sources */,
 				C492D44D1DF9AB310067418F /* ViewController.swift in Sources */,
