@@ -15,5 +15,5 @@ class allgemeinFall{
     var usecase = "";
     var location = "";
     var locality = "";
-
+    var imageLink = [String]();
 }

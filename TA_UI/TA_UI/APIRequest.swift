@@ -164,11 +164,15 @@ class APIRequest
         let id = String(x);
    
         //Dictionary für json Datei
-        let jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Stadt" : allgemein.locality, "Unfallhergang" : autounfall.unfallHergang] ;
+        var jsonDict = ["ID" : id, "Usecase" : allgemein.usecase , "Verletzte" : autounfall.verletzte, "Sachschaden" : autounfall.sachschaden, "Name" : autounfall.name, "Adresse" : autounfall.adresse, "Telefonnummer" : autounfall.telefonnr, "Kennzeichen" : autounfall.kennzeichen, "Datum" : allgemein.datum, "Location" : allgemein.location, "Stadt" : allgemein.locality, "Unfallhergang" : autounfall.unfallHergang];
+        for index in 0 ..< allgemein.imageLink.count {
+            jsonDict["ImageFile" + String(index)] = allgemein.imageLink[index];
+        }
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {
             try jsonFile.saveFile(dataForJson: jsonDict as NSDictionary)
+            allgemein.imageLink = [];
         }
         catch {
             print(error)
@@ -195,11 +199,16 @@ class APIRequest
         let id = String(x);
         
        //Dictionary für json Datei
-        let jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
+        var jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
+        
+        for index in 0 ..< allgemein.imageLink.count {
+            jsonDictZug["ImageFile" + String(index)] = allgemein.imageLink[index];
+        }
         
         //Dictionary speichern, mit saveFile Function aus FileSaveHelper
         do {
             try jsonFile.saveFile(dataForJson: jsonDictZug as NSDictionary)
+            allgemein.imageLink = [];
         }
         catch {
             print(error)

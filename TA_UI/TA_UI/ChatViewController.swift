@@ -136,14 +136,14 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Foto anhängen
         let cameraAction = UIAlertAction(title: "Foto", style: .default, handler: {
             action in
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
                     let picker = UIImagePickerController()
                     picker.delegate = self
-                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                    picker.sourceType = UIImagePickerControllerSourceType.camera
                     picker.allowsEditing = true;
                     self.present(picker, animated: true, completion: nil)
                 } else {
-                    print("Photo Library is not available")
+                    print("Camera is not available")
                 }
         })
         alertController.addAction(cameraAction)
@@ -182,8 +182,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             let fallNummerImage = String(idHelper);
             let imageFileName = fallNummerImage + String(anzahlImages);
             let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                   try imageToSave.saveFileImage(image: image)
-                anzahlImages += 1
+       
+            try imageToSave.saveFileImage(image: image)
+            anzahlImages += 1
 
         }
             //If there is an error, we will print it to the console window.

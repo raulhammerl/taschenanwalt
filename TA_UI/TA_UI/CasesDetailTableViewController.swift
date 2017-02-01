@@ -48,6 +48,7 @@ class CasesDetailTrainCell: UITableViewCell {
 
 class CasesImageCell: UITableViewCell{
     @IBOutlet weak var CasesImage1: UIImageView!
+    @IBOutlet var CasesImage2: UIImageView!
     
 }
 
@@ -104,12 +105,12 @@ class CasesDetailTableViewController: UITableViewController {
             switch (usecase){
             case "autounfall":
                 if(item[listId]["Name"].string! == ""){
-                     anzahlRowAutounfall -= 1
+                    anzahlRowAutounfall -= 1
                 }
                 if(item[listId]["Unfallhergang"].string! == ""){
-                     anzahlRowAutounfall -= 1
+                    anzahlRowAutounfall -= 1
                 }
-              
+                
                 if(item[listId]["Sachschaden"].string! == "" && item[listId]["Verletzte"].string! == ""){
                     anzahlRowAutounfall -= 1
                 }
@@ -162,17 +163,31 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
                     let fallNummerImage = String(listId);
-                    let imageFileName = fallNummerImage + String(anzahlImages);
-                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                    do {
-                        var imageName = fallNummerImage + String(anzahlImages)
-                        //cell.??.image
-                        //try cell.image = imageToSave.getImage(imageName:imageName);
-                    } catch {
+                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                    let getImageFile:FileSaveHelper = FileSaveHelper(fileName: "", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                    
+                    
+                    if let imagefile = item[listId]["ImageFile0"].string{
+                        do {
+                            print("imagefile: " + imagefile);
+                            //let imageName = fallNummerImage + String(anzahlImages)
+                            try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
+                        } catch {
+                            print(error)
+                        }
                         
-                        print(error)
                     }
                     
+                    if let imagefile2 = item[listId]["ImageFile1"].string{
+                        do {
+                            print("imagefile: " + imagefile2);
+                            //let imageName = fallNummerImage + String(anzahlImages)
+                            try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
+                        } catch {
+                            print(error)
+                        }
+                        
+                    }
                     
                     
                     return cell
@@ -190,7 +205,7 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
                     
-            
+                    
                     
                     let name = item[listId]["Name"].string!
                     let adresse = item[listId]["Adresse"].string!
@@ -198,7 +213,7 @@ class CasesDetailTableViewController: UITableViewController {
                     let kennzeichen = item[listId]["Kennzeichen"].string!
                     let verletzte = item[listId]["Verletzte"].string!
                     let sachschaden = item[listId]["Sachschaden"].string!
-
+                    
                     
                     
                     //cell.PersonHeadline?.text = "Beteiligter"
@@ -212,15 +227,15 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     return cell
                     
-                /*case 4:
+                    /*case 4:
+                     
+                     //Zelle auf Sachschaden Verletzte anpassen
+                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
+                     
+                     // let verletzte = item[listId]["Verletzte"].string!
+                     
+                     return cell*/
                     
-                    //Zelle auf Sachschaden Verletzte anpassen
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
-                    
-                   // let verletzte = item[listId]["Verletzte"].string!
-                    
-                    return cell*/
-
                     
                 default: print("presentation error")
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailTrainCell")as! CasesDetailTrainCell
@@ -230,7 +245,7 @@ class CasesDetailTableViewController: UITableViewController {
                 
                 
                 
-            case "zugausfall", "zuverspätung":
+            case "zugausfall", "zugverspätung":
                 
                 switch (row){
                     
@@ -245,19 +260,25 @@ class CasesDetailTableViewController: UITableViewController {
                     return cell
                     
                 case 1:
-                      let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
-
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
+                    
                     //bilder
+                    //let fallNummerImage = String(listId);
+                    //let imageFileName = fallNummerImage + String(anzahlImages);
                     let fallNummerImage = String(listId);
-                    let imageFileName = fallNummerImage + String(anzahlImages);
-                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                    do {
-                        let imageName = fallNummerImage + String(anzahlImages)
-                        try cell.CasesImage1?.image = imageToSave.getImage(imageName:imageName);
-                    } catch {
+                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                    let getImageFile:FileSaveHelper = FileSaveHelper(fileName: fallNummerImage + "0", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                    
+                    if let imagefile = item[listId]["ImageFile0"].string{
+                        do {
+                            //let imageName = fallNummerImage + String(anzahlImages)
+                            try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
+                        } catch {
+                            print(error)
+                        }
                         
-                        print(error)
                     }
+                    
                     return cell
                 case 2:
                     
@@ -279,7 +300,7 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     return cell
                     
-            
+                    
                     
                 default: print("presentation error")
                 //CHANGE

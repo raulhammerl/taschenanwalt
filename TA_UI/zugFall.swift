@@ -10,8 +10,6 @@ import Foundation
 
 class zugFall{
     
-   // var identi = 0;
-    //var usecase = "";
     var name = "";
     var adresse = "";
     var bankverbindung = "";
