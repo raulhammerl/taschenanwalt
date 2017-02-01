@@ -78,7 +78,7 @@ class CasesDetailTableViewController: UITableViewController {
     
     
     // Daten an die Detailansicht übergeben
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let path = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: path!) as! CasesImageCell
         
@@ -87,7 +87,8 @@ class CasesDetailTableViewController: UITableViewController {
                 destination.imageToShow = cell.CasesImage1?.image
             }
         }
-    }
+    }*/
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -289,13 +290,15 @@ class CasesDetailTableViewController: UITableViewController {
                     let bankverbindung = item[listId]["Bankverbindung"].string!
                     let startbahnhof = item[listId]["Startbahnhof"].string!
                     let zielbahnhof = item[listId]["Zielbahnhof"].string!
+                    let zugid = item[listId]["ZugID"].string!
+
                     
                     cell.TrainName?.text = name
                     cell.TrainAddress?.text = adresse
                     cell.TrainIban?.text = bankverbindung
                     cell.TrainStartStation?.text = startbahnhof
                     cell.TrainEndStation?.text = zielbahnhof
-                    // cell.TrainID?.text =
+                    cell.TrainID?.text = zugid
                     cell.TrainStatus?.text = "ausgefallen"
                     
                     return cell

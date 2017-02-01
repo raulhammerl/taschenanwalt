@@ -115,6 +115,9 @@ class APIRequest
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
+                    if let zugid = json["result"]["parameters"]["zielbahnhof"].string{
+                        self.zug.zugid = zugid;
+                    }
                     if let done = json["result"]["parameters"]["done"].string{
                         if(done == "done" || done == ""){
                             self.saveInJsonZug(zugProblem: self.zug);
@@ -136,6 +139,9 @@ class APIRequest
                     }
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
+                    }
+                    if let zugid = json["result"]["parameters"]["zielbahnhof"].string{
+                        self.zug.zugid = zugid;
                     }
                     if let done = json["result"]["parameters"]["done"].string{
                         if(done == "done" || done == ""){
@@ -199,7 +205,7 @@ class APIRequest
         let id = String(x);
         
        //Dictionary für json Datei
-        var jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum];
+        var jsonDictZug = ["ID" : id, "Usecase" : allgemein.usecase , "Name" : zugProblem.name, "Adresse" : zugProblem.adresse, "Bankverbindung" : zugProblem.bankverbindung, "Startbahnhof" : zugProblem.startbahnhof, "Zielbahnhof" : zugProblem.zielbahnhof, "Datum" : allgemein.datum, "ZugID" : zugProblem.zugid];
         
         for index in 0 ..< allgemein.imageLink.count {
             jsonDictZug["ImageFile" + String(index)] = allgemein.imageLink[index];
