@@ -106,7 +106,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ulB-pR-UMA"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,7 +137,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMm-cF-vqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="PrB-QB-y9t">
@@ -200,7 +198,6 @@
                             <outlet property="delegate" destination="uzR-KW-t32" id="0kt-4t-cDh"/>
                         </connections>
                     </tableView>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZOo-lM-yk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,7 +246,6 @@
                             <outlet property="delegate" destination="Sdf-eg-k7q" id="RIB-vD-gX1"/>
                         </connections>
                     </tableView>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0EZ-fd-5Hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -323,7 +319,6 @@
                             <constraint firstItem="r9Y-uu-npo" firstAttribute="height" secondItem="Oi9-6b-Foe" secondAttribute="height" id="zfp-wh-U8K"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="headline" destination="L7n-xW-MMh" id="ecz-DW-88T"/>
                         <outlet property="image" destination="deX-F9-r57" id="c7a-On-28K"/>
@@ -795,7 +790,6 @@
                             <outlet property="delegate" destination="hjl-xa-QAE" id="cDb-4H-HIl"/>
                         </connections>
                     </tableView>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6B-Xi-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -855,7 +849,6 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ict-Ut-eqm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZOq-xA-c5P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

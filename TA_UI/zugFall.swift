@@ -17,6 +17,6 @@ class zugFall{
     var zielbahnhof = "";
     //weniger oder mehr als 60 Minuten
     var verspaetungsZeit = "";
-    
+    var zugid = "";
     
 }

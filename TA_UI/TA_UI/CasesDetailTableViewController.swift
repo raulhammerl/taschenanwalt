@@ -78,7 +78,7 @@ class CasesDetailTableViewController: UITableViewController {
     
     
     // Daten an die Detailansicht übergeben
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let path = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: path!) as! CasesImageCell
         
@@ -88,6 +88,7 @@ class CasesDetailTableViewController: UITableViewController {
             }
         }
     }
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -100,7 +101,7 @@ class CasesDetailTableViewController: UITableViewController {
             
             let item = try jsonFile.getJSONData();
             let usecase = item[listId]["Usecase"].string!
-            var anzahlRowAutounfall = 5
+            var anzahlRowAutounfall = 4
             
             switch (usecase){
             case "autounfall":
@@ -112,6 +113,9 @@ class CasesDetailTableViewController: UITableViewController {
                 }
                 
                 if(item[listId]["Sachschaden"].string! == "" && item[listId]["Verletzte"].string! == ""){
+                    anzahlRowAutounfall -= 1
+                }
+                if (item[listId]["ImageFile0"].string == nil){
                     anzahlRowAutounfall -= 1
                 }
                 return anzahlRowAutounfall
@@ -254,7 +258,7 @@ class CasesDetailTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
                     let datum = item[listId]["Datum"].string!
                     cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
-                    cell.HeaderTitel?.text = usecase
+                    cell.HeaderTitel?.text = usecase.capitalized
                     cell.HeaderDate?.text = datum
                     
                     return cell
@@ -278,6 +282,16 @@ class CasesDetailTableViewController: UITableViewController {
                         }
                         
                     }
+                    if let imagefile2 = item[listId]["ImageFile1"].string{
+                        do {
+                            print("imagefile: " + imagefile2);
+                            try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
+                        } catch {
+                            print(error)
+                        }
+                        
+                    }
+                    
                     
                     return cell
                 case 2:
@@ -289,13 +303,15 @@ class CasesDetailTableViewController: UITableViewController {
                     let bankverbindung = item[listId]["Bankverbindung"].string!
                     let startbahnhof = item[listId]["Startbahnhof"].string!
                     let zielbahnhof = item[listId]["Zielbahnhof"].string!
+                    let zugid = item[listId]["ZugID"].string!
+
                     
                     cell.TrainName?.text = name
                     cell.TrainAddress?.text = adresse
                     cell.TrainIban?.text = bankverbindung
                     cell.TrainStartStation?.text = startbahnhof
                     cell.TrainEndStation?.text = zielbahnhof
-                    // cell.TrainID?.text =
+                    cell.TrainID?.text = zugid
                     cell.TrainStatus?.text = "ausgefallen"
                     
                     return cell
