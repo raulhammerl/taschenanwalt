@@ -394,6 +394,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="AttributesSachschaden" destination="vQY-PY-XUg" id="ftI-GK-zyn"/>
+                                    <outlet property="AttributesVerletzte" destination="Emx-GC-iB5" id="n0l-di-W0e"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CasesImageCell" id="VMc-SZ-HLb" customClass="CasesImageCell" customModule="TA_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="458" width="375" height="149"/>

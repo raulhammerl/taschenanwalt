@@ -48,10 +48,15 @@ class CasesDetailTrainCell: UITableViewCell {
 
 class CasesImageCell: UITableViewCell{
     @IBOutlet weak var CasesImage1: UIImageView!
-    @IBOutlet var CasesImage2: UIImageView!
     
 }
 
+class CasesDetailAttributesCell: UITableViewCell{
+    
+    @IBOutlet weak var AttributesVerletzte: UILabel!
+ 
+    @IBOutlet weak var AttributesSachschaden: UILabel!
+}
 
 
 class CasesDetailTableViewController: UITableViewController {
@@ -180,7 +185,7 @@ class CasesDetailTableViewController: UITableViewController {
                         
                     }
                     
-                    if let imagefile2 = item[listId]["ImageFile1"].string{
+                   /* if let imagefile2 = item[listId]["ImageFile1"].string{
                         do {
                             print("imagefile: " + imagefile2);
                             try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
@@ -188,7 +193,7 @@ class CasesDetailTableViewController: UITableViewController {
                             print(error)
                         }
                         
-                    }
+                    }*/
                     
                     
                     return cell
@@ -276,7 +281,7 @@ class CasesDetailTableViewController: UITableViewController {
                         }
                         
                     }
-                    if let imagefile2 = item[listId]["ImageFile1"].string{
+                   /* if let imagefile2 = item[listId]["ImageFile1"].string{
                         do {
                             print("imagefile: " + imagefile2);
                             try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
@@ -284,7 +289,7 @@ class CasesDetailTableViewController: UITableViewController {
                             print(error)
                         }
                         
-                    }
+                    } */
                     
                     
                     return cell
