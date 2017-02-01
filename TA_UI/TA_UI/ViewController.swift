@@ -28,16 +28,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      
     }
     
-  /*  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        
-        //LightContent
-        return UIStatusBarStyle.lightContent
-        
-        //Default
-        //return UIStatusBarStyle.Default
-        
-    } */
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {

@@ -21,6 +21,9 @@ class DictionaryDetailsViewController: UIViewController {
     var logo: UIImage!
     var headlineText: String!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

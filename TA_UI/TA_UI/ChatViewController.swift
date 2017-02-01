@@ -34,6 +34,10 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
        self.collectionView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -106,6 +106,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ulB-pR-UMA"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -137,6 +138,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMm-cF-vqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="PrB-QB-y9t">
@@ -198,6 +200,7 @@
                             <outlet property="delegate" destination="uzR-KW-t32" id="0kt-4t-cDh"/>
                         </connections>
                     </tableView>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZOo-lM-yk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,6 +249,7 @@
                             <outlet property="delegate" destination="Sdf-eg-k7q" id="RIB-vD-gX1"/>
                         </connections>
                     </tableView>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0EZ-fd-5Hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -544,7 +548,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggo-JM-U1j">
-                                            <rect key="frame" x="131.5" y="11" width="112.5" height="112.5"/>
+                                            <rect key="frame" x="131.5" y="10.5" width="112.5" height="112.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ggo-JM-U1j" secondAttribute="height" multiplier="1:1" id="fBj-fG-VyU"/>
                                             </constraints>
@@ -794,6 +798,7 @@
                             <outlet property="delegate" destination="hjl-xa-QAE" id="cDb-4H-HIl"/>
                         </connections>
                     </tableView>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6B-Xi-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -851,7 +856,7 @@
         <!--Navigation Controller-->
         <scene sceneID="F6x-B1-Rwj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ict-Ut-eqm" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ict-Ut-eqm" customClass="NavigationController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZOq-xA-c5P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
