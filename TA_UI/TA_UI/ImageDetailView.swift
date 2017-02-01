@@ -17,7 +17,8 @@ class ImageDetailView:  UIViewController, UIScrollViewDelegate {
     
     
     override func viewDidLoad() {
-        
+        self.navigationController?.isNavigationBarHidden = true
+
         Image?.image = imageToShow
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -25,8 +26,13 @@ class ImageDetailView:  UIViewController, UIScrollViewDelegate {
         view.addGestureRecognizer(tap)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     func tapped() {
-        performSegue(withIdentifier: "backToOldCases" , sender: Any?.self)
+        //performSegue(withIdentifier: "backToOldCases" , sender: Any?.self)
+        self.navigationController?.popViewController(animated:true)
     }
     
     

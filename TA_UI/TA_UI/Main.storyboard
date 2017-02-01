@@ -344,15 +344,15 @@
             <objects>
                 <tableViewController title="Alte Fälle" id="hjl-xa-QAE" customClass="CasesDetailTableViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="149" sectionHeaderHeight="28" sectionFooterHeight="28" id="OVU-BQ-3bz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CasesDetailAttributesCell" rowHeight="430" id="yOZ-bd-nYL" customClass="CasesDetailAttributesCell" customModule="TA_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CasesDetailAttributesCell" rowHeight="430" id="yOZ-bd-nYL" customClass="CasesDetailAttributesCell" customModule="TA_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOZ-bd-nYL" id="quT-Wc-x29">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QUo-gL-z9H">
@@ -405,7 +405,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CasesImageCell" id="VMc-SZ-HLb" customClass="CasesImageCell" customModule="TA_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CasesImageCell" id="VMc-SZ-HLb" customClass="CasesImageCell" customModule="TA_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="458" width="375" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VMc-SZ-HLb" id="PYP-gl-dDc">
@@ -452,14 +452,14 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="CasesImage1" destination="KKt-o9-dgM" id="WLo-J0-Ej2"/>
-                                    <segue destination="vx2-Xz-YwF" kind="showDetail" identifier="ShowImageDetail" id="r5M-2c-o3a"/>
+                                    <segue destination="vx2-Xz-YwF" kind="showDetail" identifier="ShowImageDetail" action="showViewController:sender:" id="n1h-HL-RfH"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CasesDetailPersonCell" rowHeight="430" id="Orv-c0-b9k" customClass="CasesDetailPersonCell" customModule="TA_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CasesDetailPersonCell" rowHeight="430" id="Orv-c0-b9k" customClass="CasesDetailPersonCell" customModule="TA_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="607" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Orv-c0-b9k" id="UjX-E7-c13">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jGD-Jv-y7d">
@@ -648,11 +648,11 @@
                                     <outlet property="DescriptionText" destination="vOK-P0-tmj" id="F6C-E6-pwg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CasesDetailTrainCell" rowHeight="430" id="OgE-pt-bMp" userLabel="CasesDetailTrainCell" customClass="CasesDetailTrainCell" customModule="TA_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CasesDetailTrainCell" rowHeight="430" id="OgE-pt-bMp" userLabel="CasesDetailTrainCell" customClass="CasesDetailTrainCell" customModule="TA_UI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="1419" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OgE-pt-bMp" id="QcV-Jo-qhb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tjy-Xa-Uab">
@@ -857,7 +857,6 @@
                     </view>
                     <connections>
                         <outlet property="Image" destination="yms-id-Eb1" id="eu1-pv-myc"/>
-                        <segue destination="hjl-xa-QAE" kind="showDetail" identifier="backToOldCases" animates="NO" action="showViewController:sender:" id="wnw-WQ-zk9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNz-eO-1wn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -892,7 +891,4 @@
     <resources>
         <image name="TaschenanwaltLogo.png" width="700" height="700"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="wnw-WQ-zk9"/>
-    </inferredMetricsTieBreakers>
 </document>

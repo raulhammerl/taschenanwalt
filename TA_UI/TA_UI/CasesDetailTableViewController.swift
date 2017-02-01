@@ -69,6 +69,8 @@ class CasesDetailTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        self.navigationController?.isNavigationBarHidden = false
+        
      
         
     }
