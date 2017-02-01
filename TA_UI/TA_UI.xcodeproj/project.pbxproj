@@ -189,10 +189,10 @@
 				C3026FE11E1E8550001884A0 /* APIRequest.swift */,
 				C492D44A1DF9AB310067418F /* AppDelegate.swift */,
 				C492D44C1DF9AB310067418F /* ViewController.swift */,
+				C49788491E411D1F00EBBC63 /* ImageDetailView.swift */,
 				C492D4511DF9AB310067418F /* Assets.xcassets */,
 				C492D4531DF9AB310067418F /* LaunchScreen.storyboard */,
 				C3FE260D1E1E875300BBC2B2 /* Main.storyboard */,
-				C49788491E411D1F00EBBC63 /* ImageDetailView.swift */,
 				C492D4561DF9AB310067418F /* Info.plist */,
 			);
 			path = TA_UI;
