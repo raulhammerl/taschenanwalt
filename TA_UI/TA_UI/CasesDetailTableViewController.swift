@@ -106,7 +106,7 @@ class CasesDetailTableViewController: UITableViewController {
             
             let item = try jsonFile.getJSONData();
             let usecase = item[listId]["Usecase"].string!
-            var anzahlRowAutounfall = 4
+            var anzahlRowAutounfall = 5
             
             switch (usecase){
             case "autounfall":
@@ -117,9 +117,10 @@ class CasesDetailTableViewController: UITableViewController {
                     anzahlRowAutounfall -= 1
                 }
                 
-                if(item[listId]["Sachschaden"].string! == "" && item[listId]["Verletzte"].string! == ""){
+                if(item[listId]["Sachschaden"].string! == "" || item[listId]["Verletzte"].string! == ""){
                     anzahlRowAutounfall -= 1
                 }
+                
                 if (item[listId]["ImageFile0"].string == nil){
                     anzahlRowAutounfall -= 1
                 }
@@ -217,30 +218,31 @@ class CasesDetailTableViewController: UITableViewController {
                     let adresse = item[listId]["Adresse"].string!
                     let telefon = item[listId]["Telefonnummer"].string!
                     let kennzeichen = item[listId]["Kennzeichen"].string!
-                    let verletzte = item[listId]["Verletzte"].string!
-                    let sachschaden = item[listId]["Sachschaden"].string!
+                   
                     
                     
                     
-                    //cell.PersonHeadline?.text = "Beteiligter"
                     cell.PersonName?.text = name
                     cell.PersonAdresse?.text = adresse
                     cell.PersonTelefon?.text = telefon
                     cell.PersonKennzeichen?.text = kennzeichen
-                    cell.Verletzte?.text = verletzte
-                    cell.Sachschaden?.text = sachschaden
+                   
                     
                     
                     return cell
                     
-                    /*case 4:
+                    case 4:
                      
-                     //Zelle auf Sachschaden Verletzte anpassen
-                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailPersonCell") as! CasesDetailPersonCell
+                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesDetailAttributesCell") as! CasesDetailAttributesCell
                      
-                     // let verletzte = item[listId]["Verletzte"].string!
+                     let verletzte = item[listId]["Verletzte"].string!
+                     let sachschaden = item[listId]["Sachschaden"].string!
                      
-                     return cell*/
+                     cell.AttributesVerletzte?.text = verletzte
+                     cell.AttributesSachschaden?.text = sachschaden
+                     
+                     
+                     return cell
                     
                     
                 default: print("presentation error")
