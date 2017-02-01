@@ -595,7 +595,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-P0-tmj">
-                                            <rect key="frame" x="30" y="27" width="315" height="200.5"/>
+                                            <rect key="frame" x="47" y="27" width="281" height="200.5"/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
                                             <color key="textColor" red="0.21875308039999999" green="0.30161531940000003" blue="0.39386040570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -605,16 +605,15 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="3NQ-d8-oSu" firstAttribute="top" secondItem="tFD-bH-qd0" secondAttribute="top" constant="5" id="Gf7-pv-SOT"/>
-                                        <constraint firstAttribute="trailing" secondItem="vOK-P0-tmj" secondAttribute="trailing" constant="30" id="JbC-g6-jvJ"/>
                                         <constraint firstAttribute="bottom" secondItem="vOK-P0-tmj" secondAttribute="bottom" constant="5" id="Ri9-lj-VvG"/>
                                         <constraint firstItem="3NQ-d8-oSu" firstAttribute="centerX" secondItem="tFD-bH-qd0" secondAttribute="centerX" id="bNi-Iy-jRM"/>
-                                        <constraint firstItem="vOK-P0-tmj" firstAttribute="top" secondItem="3NQ-d8-oSu" secondAttribute="bottom" constant="5" id="dkG-Hs-hRi"/>
                                         <constraint firstItem="vOK-P0-tmj" firstAttribute="top" secondItem="3NQ-d8-oSu" secondAttribute="bottom" constant="5" id="iBq-Lg-yy7"/>
-                                        <constraint firstItem="vOK-P0-tmj" firstAttribute="leading" secondItem="tFD-bH-qd0" secondAttribute="leading" constant="30" id="l0f-gG-hU4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="vOK-P0-tmj" firstAttribute="centerX" secondItem="Exx-0C-zAl" secondAttribute="centerX" id="P8K-MY-6Di"/>
+                                    <constraint firstItem="vOK-P0-tmj" firstAttribute="width" secondItem="Exx-0C-zAl" secondAttribute="width" multiplier="0.75" id="b9z-Ve-sPL"/>
                                     <constraint firstItem="3NQ-d8-oSu" firstAttribute="width" secondItem="Exx-0C-zAl" secondAttribute="width" multiplier="0.75" id="wMr-MS-aum"/>
                                 </constraints>
                                 <connections>
