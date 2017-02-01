@@ -23,6 +23,10 @@ class DictionaryTableViewController: UITableViewController, UISearchResultsUpdat
     var searchController : UISearchController!
     var resultsController = UITableViewController()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.separatorStyle = .none
         self.view.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
