@@ -137,7 +137,7 @@
         <scene sceneID="KI7-WY-xu4">
             <objects>
                 <tableViewController title="Alte Fälle" id="uzR-KW-t32" customClass="CasesTableViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" id="A9S-Wr-maH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" id="A9S-Wr-maH">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,9 +195,9 @@
         <!--Lexikon-->
         <scene sceneID="zpM-q9-ktX">
             <objects>
-                <tableViewController title="Lexikon" id="Sdf-eg-k7q" userLabel="Lexikon" customClass="DictionaryTableViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgI-XE-0r0">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                <tableViewController title="Lexikon" extendedLayoutIncludesOpaqueBars="YES" id="Sdf-eg-k7q" userLabel="Lexikon" customClass="DictionaryTableViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgI-XE-0r0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -244,13 +244,13 @@
         <!--Details-->
         <scene sceneID="h39-To-0CN">
             <objects>
-                <viewController storyboardIdentifier="Lexikon Details" title="Details" id="mdO-zm-axZ" customClass="DictionaryDetailsViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Lexikon Details" title="Details" extendedLayoutIncludesOpaqueBars="YES" id="mdO-zm-axZ" customClass="DictionaryDetailsViewController" customModule="TA_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gsn-MW-yYX"/>
                         <viewControllerLayoutGuide type="bottom" id="mMn-Bz-hfz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Oi9-6b-Foe">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Oi9-6b-Foe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9Y-uu-npo">
