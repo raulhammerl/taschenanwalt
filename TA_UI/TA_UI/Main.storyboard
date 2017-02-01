@@ -125,25 +125,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="PrB-QB-y9t" appends="YES" id="Bju-cN-PoF"/>
-                            <outletCollection property="gestureRecognizers" destination="PrB-QB-y9t" appends="YES" id="Q9I-4O-2ZZ"/>
-                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="kl8-da-TvG">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="mMn-E0-ZPf">
-                            <color key="tintColor" red="0.21875308039999999" green="0.30161531940000003" blue="0.39386040570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="Ict-Ut-eqm" kind="show" id="Tz3-zT-svk"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Chat" id="kl8-da-TvG"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMm-cF-vqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="PrB-QB-y9t">
-                    <rectEdge key="edges" left="YES"/>
-                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1491" y="-436"/>
         </scene>
