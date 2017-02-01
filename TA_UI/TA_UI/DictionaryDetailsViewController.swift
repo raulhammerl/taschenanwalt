@@ -18,7 +18,11 @@ class DictionaryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        details.text = content
+       if let detailsText = content
+        {
+            details.text = detailsText
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

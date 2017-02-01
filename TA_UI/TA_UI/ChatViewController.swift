@@ -185,8 +185,9 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
             let fallNummerImage = String(idHelper);
             let imageFileName = fallNummerImage + String(anzahlImages);
             let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                   try imageToSave.saveFileImage(image: image)
-                anzahlImages += 1
+       
+            try imageToSave.saveFileImage(image: image)
+            anzahlImages += 1
 
         }
             //If there is an error, we will print it to the console window.

@@ -61,6 +61,7 @@ class FileSaveHelper {
     var fileExists:Bool {
         get {
             return fileManager.fileExists(atPath: fullyQualifiedPath)
+            print(fullyQualifiedPath)
         }
     }
     
@@ -162,8 +163,13 @@ class FileSaveHelper {
             throw FileErrors.ImageNoteConvertedToData
         }
         //Hier wird der File gespeichert. createFile(filepath, data, attributes).Es gibt einen boolean Wert zurück, falls dieser false ist, wird ein Fehler angezeigt
+        let file = fullyQualifiedPath
+
+        allgemein.imageLink.append(file);
+        print("file: " + file)
         if !fileManager.createFile(atPath: fullyQualifiedPath, contents: data, attributes: nil){
             throw FileErrors.FileNotSaved
+            
         }
     }
     
@@ -181,12 +187,13 @@ class FileSaveHelper {
     }
 
     //gespeichertes Bild anzeigen lassen
-    func getImage(imageName:String) throws -> UIImage {
+    func getImage(imagePath:String) throws -> UIImage {
+        print("imagePath: " + imagePath)
         guard fileExists else {
             throw FileErrors.FileNotFound
         }
-       let path = "\(self.filePath)/\(imageName).jpg"
-       
+       //let path = "\(self.filePath)/\(imageName).jpg"
+       let path = imagePath
         guard let image = UIImage(contentsOfFile: path) else {
             throw FileErrors.FileNotRead
         }

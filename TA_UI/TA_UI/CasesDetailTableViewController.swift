@@ -152,17 +152,20 @@ class CasesDetailTableViewController: UITableViewController {
                     
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
                     let fallNummerImage = String(listId);
-                    let imageFileName = fallNummerImage + String(anzahlImages);
-                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                    do {
-                        var imageName = fallNummerImage + String(anzahlImages)
-                        //cell.??.image
-                        //try cell.image = imageToSave.getImage(imageName:imageName);
-                    } catch {
-                        
-                        print(error)
-                    }
+                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                    let getImageFile:FileSaveHelper = FileSaveHelper(fileName: fallNummerImage + "0", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
                     
+                
+                    if let imagefile = item[listId]["ImageFile0"].string{
+                        do {
+                            print("imagefile: " + imagefile);
+                            //let imageName = fallNummerImage + String(anzahlImages)
+                            try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
+                        } catch {
+                            print(error)
+                        }
+                        
+                    }
                     
                     
                     return cell
@@ -238,16 +241,22 @@ class CasesDetailTableViewController: UITableViewController {
                       let cell = tableView.dequeueReusableCell(withIdentifier: "CasesImageCell")as! CasesImageCell
 
                     //bilder
-                    let fallNummerImage = String(listId);
-                    let imageFileName = fallNummerImage + String(anzahlImages);
-                    let imageToSave:FileSaveHelper = FileSaveHelper(fileName: imageFileName, fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
-                    do {
-                        let imageName = fallNummerImage + String(anzahlImages)
-                        try cell.CasesImage1?.image = imageToSave.getImage(imageName:imageName);
-                    } catch {
+                    //let fallNummerImage = String(listId);
+                    //let imageFileName = fallNummerImage + String(anzahlImages);
+                      let fallNummerImage = String(listId);
+                      //let imageFileName = fallNummerImage + String(anzahlImages);
+                      let getImageFile:FileSaveHelper = FileSaveHelper(fileName: fallNummerImage + "0", fileExtension: .JPG, subDirectory: "Images",directory: .documentDirectory);
+                      
+                      if let imagefile = item[listId]["ImageFile0"].string{
+                        do {
+                            //let imageName = fallNummerImage + String(anzahlImages)
+                            try cell.CasesImage1?.image = getImageFile.getImage(imagePath:imagefile);
+                        } catch {
+                            print(error)
+                        }
                         
-                        print(error)
-                    }
+                      }
+                      
                     return cell
                 case 2:
                     
