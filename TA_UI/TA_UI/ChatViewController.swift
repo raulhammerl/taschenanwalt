@@ -139,14 +139,14 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Foto anhängen
         let cameraAction = UIAlertAction(title: "Foto", style: .default, handler: {
             action in
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
                     let picker = UIImagePickerController()
                     picker.delegate = self
-                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                    picker.sourceType = UIImagePickerControllerSourceType.camera
                     picker.allowsEditing = true;
                     self.present(picker, animated: true, completion: nil)
                 } else {
-                    print("Photo Library is not available")
+                    print("Camera is not available")
                 }
         })
         alertController.addAction(cameraAction)

@@ -41,7 +41,8 @@ class CasesTableViewController: UITableViewController{
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+      
+       return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +53,7 @@ class CasesTableViewController: UITableViewController{
          catch {
             print(error)
         }
+        EmptyMessage(message: "Es gibt noch keine alten Fälle.", viewController: self)
         return 0
     }
     
@@ -91,7 +93,25 @@ class CasesTableViewController: UITableViewController{
         }
     }
     
+    
+    //Wenn noch kein Eintrag in alte Fälle vorhanden ist
+    func EmptyMessage(message:String, viewController:UITableViewController) {
+        let messageLabel = UILabel(frame: CGRectMake(0,0,viewController.view.bounds.size.width, viewController.view.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.black
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+        messageLabel.sizeToFit()
+        
+        viewController.tableView.backgroundView = messageLabel;
+        viewController.tableView.separatorStyle = .none;
+    }
+    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
 
  
 
 }
+ 

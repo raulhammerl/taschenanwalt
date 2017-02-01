@@ -20,12 +20,6 @@ class DictionaryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-       if let detailsText = content
-        {
-            details.text = detailsText
-        }
-        
         text?.text = content
     }
     
