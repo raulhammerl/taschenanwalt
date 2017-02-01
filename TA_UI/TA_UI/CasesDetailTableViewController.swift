@@ -258,7 +258,7 @@ class CasesDetailTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CasesHeadlineTableViewCell")as! CasesHeadlineTableViewCell
                     let datum = item[listId]["Datum"].string!
                     cell.HeaderImage?.image = UIImage (named:"TrainLogoOrangetoGrey")
-                    cell.HeaderTitel?.text = usecase
+                    cell.HeaderTitel?.text = usecase.capitalized
                     cell.HeaderDate?.text = datum
                     
                     return cell
