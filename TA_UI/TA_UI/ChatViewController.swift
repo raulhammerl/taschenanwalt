@@ -134,19 +134,33 @@ class ChatViewController: JSQMessagesViewController, UIImagePickerControllerDele
         let alertController = UIAlertController(title: "Anhang", message: "Was möchtest du anhängen?", preferredStyle: .actionSheet)
         
         // Foto anhängen
-        let cameraAction = UIAlertAction(title: "Foto", style: .default, handler: {
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {
             action in
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
                     let picker = UIImagePickerController()
                     picker.delegate = self
-                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                    picker.sourceType = UIImagePickerControllerSourceType.camera
                     picker.allowsEditing = true;
                     self.present(picker, animated: true, completion: nil)
                 } else {
-                    print("Photo Library is not available")
+                    print("Camera is not available")
                 }
         })
         alertController.addAction(cameraAction)
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {
+            action in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                picker.allowsEditing = true;
+                self.present(picker, animated: true, completion: nil)
+            } else {
+                print("Photo Library is not available")
+            }
+        })
+        alertController.addAction(photoLibraryAction)
         
         // Location anhängen
         let locationAction = UIAlertAction(title: "Location", style: .default, handler: {
