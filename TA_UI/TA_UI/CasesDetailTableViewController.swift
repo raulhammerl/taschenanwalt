@@ -78,7 +78,7 @@ class CasesDetailTableViewController: UITableViewController {
     
     
     // Daten an die Detailansicht übergeben
- /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let path = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: path!) as! CasesImageCell
         
@@ -87,7 +87,7 @@ class CasesDetailTableViewController: UITableViewController {
                 destination.imageToShow = cell.CasesImage1?.image
             }
         }
-    }*/
+    }
 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -279,6 +279,16 @@ class CasesDetailTableViewController: UITableViewController {
                         }
                         
                     }
+                    if let imagefile2 = item[listId]["ImageFile1"].string{
+                        do {
+                            print("imagefile: " + imagefile2);
+                            try cell.CasesImage2?.image = getImageFile.getImage(imagePath:imagefile2);
+                        } catch {
+                            print(error)
+                        }
+                        
+                    }
+                    
                     
                     return cell
                 case 2:
