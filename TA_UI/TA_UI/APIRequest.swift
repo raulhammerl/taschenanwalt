@@ -90,7 +90,7 @@ class APIRequest
                     if let zielbahnhofBahnJson = json["result"]["parameters"]["zielbahnhof"].string{
                         self.zug.zielbahnhof = zielbahnhofBahnJson;
                     }
-                    if let zugid = json["result"]["parameters"]["zielbahnhof"].string{
+                    if let zugid = json["result"]["parameters"]["zugid"].string{
                         self.zug.zugid = zugid;
                     }
                     if let done = json["result"]["parameters"]["done"].string{
